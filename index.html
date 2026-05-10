@@ -1,0 +1,3186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAG Learning Lab</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<button class="hamburger-btn" onclick="toggleSidebar()" title="Toggle Sidebar">☰</button>
+
+<header>
+  <h1>RAG Learning Lab</h1>
+  <p>Master embeddings, vectors, RAG pipelines, and advanced techniques with interactive examples</p>
+</header>
+
+<div class="main-container">
+
+  <!-- ── SIDEBAR ── -->
+  <div class="sidebar">
+    <!-- D8 — Embeddings & Vector Databases -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-header" onclick="toggleSection(this)">
+        <span>D1 — Embeddings + Vector Databases</span>
+        <span class="toggle">▶</span>
+        <span class="progress-badge">0/11</span>
+      </div>
+      <div class="sidebar-topics">
+        <a class="sidebar-topic" onclick="switchTopic('t1')"><span class="topic-text">1. Text Embeddings (word2vec/GloVe/BERT)</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't1')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t25')"><span class="topic-text">2. ColBERT — Late Interaction</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't25')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t2')"><span class="topic-text">3. MTEB Benchmark</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't2')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t3')"><span class="topic-text">4. Vector Similarity</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't3')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t4')"><span class="topic-text">5. HNSW Index</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't4')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t5')"><span class="topic-text">6. Chunking Strategies</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't5')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t6')"><span class="topic-text">7. Vector DB Comparison</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't6')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t26')"><span class="topic-text">8. pgvector + FAISS</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't26')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t7')"><span class="topic-text">9. Hybrid Search (BM25+Vector)</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't7')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t27')"><span class="topic-text">10. Metadata Filtering</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't27')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t8')"><span class="topic-text">11. Quantization</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't8')">✓</button></a>
+      </div>
+    </div>
+
+    <!-- D2 — RAG Pipelines -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-header" onclick="toggleSection(this)">
+        <span>D2 — RAG Pipelines</span>
+        <span class="toggle">▶</span>
+        <span class="progress-badge">0/9</span>
+      </div>
+      <div class="sidebar-topics">
+        <a class="sidebar-topic" onclick="switchTopic('t28')"><span class="topic-text">12. Document Processing Pipeline</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't28')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t9')"><span class="topic-text">13. RAG vs Fine-tuning</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't9')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t10')"><span class="topic-text">14. HyDE/Step-back/Multi-query</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't10')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t29')"><span class="topic-text">15. Reranking (Cohere/BGE)</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't29')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t30')"><span class="topic-text">16. Contextual Compression</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't30')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t31')"><span class="topic-text">17. LangChain vs LlamaIndex</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't31')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t32')"><span class="topic-text">18. OpenAI Assistants API</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't32')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t33')"><span class="topic-text">19. RAG Failure Modes</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't33')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t11')"><span class="topic-text">20. Production RAG (7-stage)</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't11')">✓</button></a>
+      </div>
+    </div>
+
+    <!-- D3 — Advanced RAG + Evaluation -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-header" onclick="toggleSection(this)">
+        <span>D3 — Advanced RAG + Evaluation</span>
+        <span class="toggle">▶</span>
+        <span class="progress-badge">0/6</span>
+      </div>
+      <div class="sidebar-topics">
+        <a class="sidebar-topic" onclick="switchTopic('t12')"><span class="topic-text">21. RAGAS Evaluation</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't12')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t13')"><span class="topic-text">22. Agentic / Self-RAG</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't13')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t14')"><span class="topic-text">23. Hallucination Detection</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't14')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t34')"><span class="topic-text">24. ReAct Pattern</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't34')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t35')"><span class="topic-text">25. MRKL Systems</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't35')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t36')"><span class="topic-text">26. Planning & Decomposition</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't36')">✓</button></a>
+      </div>
+    </div>
+
+    <!-- D11 — AI Agents Architecture -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-header" onclick="toggleSection(this)">
+        <span>D4 — AI Agents — Architecture</span>
+        <span class="toggle">▶</span>
+        <span class="progress-badge">0/5</span>
+      </div>
+      <div class="sidebar-topics">
+        <a class="sidebar-topic" onclick="switchTopic('t15')"><span class="topic-text">27. Agent Memory Systems</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't15')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t16')"><span class="topic-text">28. Multi-Agent Orchestration</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't16')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t17')"><span class="topic-text">29. LangGraph Architecture</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't17')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t37')"><span class="topic-text">30. CrewAI Framework</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't37')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t38')"><span class="topic-text">31. PydanticAI + Human-in-Loop</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't38')">✓</button></a>
+      </div>
+    </div>
+
+    <!-- D5 — MCP + A2A Protocols -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-header" onclick="toggleSection(this)">
+        <span>D5 — MCP + A2A Protocols</span>
+        <span class="toggle">▶</span>
+        <span class="progress-badge">0/6</span>
+      </div>
+      <div class="sidebar-topics">
+        <a class="sidebar-topic" onclick="switchTopic('t18')"><span class="topic-text">32. MCP Architecture</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't18')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t39')"><span class="topic-text">33. MCP Transports + OAuth</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't39')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t19')"><span class="topic-text">34. Building MCP Servers</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't19')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t20')"><span class="topic-text">35. A2A Protocol</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't20')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t40')"><span class="topic-text">36. MCP Registry</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't40')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t41')"><span class="topic-text">37. MCP Security</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't41')">✓</button></a>
+      </div>
+    </div>
+
+    <!-- D6 — Fine-tuning + PEFT -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-header" onclick="toggleSection(this)">
+        <span>D6 — Fine-tuning + PEFT</span>
+        <span class="toggle">▶</span>
+        <span class="progress-badge">0/6</span>
+      </div>
+      <div class="sidebar-topics">
+        <a class="sidebar-topic" onclick="switchTopic('t21')"><span class="topic-text">38. LoRA Deep Dive</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't21')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t42')"><span class="topic-text">39. QLoRA + PEFT Library</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't42')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t43')"><span class="topic-text">40. TRL: SFT + DPO</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't43')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t22')"><span class="topic-text">41. Dataset Curation</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't22')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t23')"><span class="topic-text">42. Fine-tuning vs Prompting</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't23')">✓</button></a>
+        <a class="sidebar-topic" onclick="switchTopic('t44')"><span class="topic-text">43. Ollama + vLLM Serving</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't44')">✓</button></a>
+      </div>
+    </div>
+
+    <!-- D7 — Week 2 Project -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-header" onclick="toggleSection(this)">
+        <span>D7 — Week 2 Project</span>
+        <span class="toggle">▶</span>
+        <span class="progress-badge-project">Build</span>
+      </div>
+      <div class="sidebar-topics">
+        <a class="sidebar-topic" onclick="switchTopic('t24')"><span class="topic-text">44. Multi-Agent RAG System</span><button class="tick-btn" onclick="toggleTopicCompletion(event, 't24')">✓</button></a>
+      </div>
+    </div>
+
+
+    <!-- Progress Overview -->
+    <div class="sidebar-progress">
+      <div class="progress-title">📊 Overall Progress</div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" style="width: 26%"></div>
+      </div>
+      <div class="progress-text">0 of 44 topics completed (0%)</div>
+      <button class="completion-btn incomplete" onclick="toggleCompletion()">
+        ○ Mark Topics
+      </button>
+    </div>
+  </div>
+
+  <!-- ── CONTENT AREA ── -->
+  <div class="content-area">
+
+<!-- ════════════════════════════════════════════
+     TOPIC 1 — Text Embeddings
+════════════════════════════════════════════ -->
+<div class="topic active" id="t1">
+  <span class="topic-section-label">D1 — Embeddings + Vector Databases</span>
+  <div class="topic-header">
+    <h2>Text Embedding Algorithms</h2>
+    <p>An embedding turns a word or sentence into a list of numbers (a vector). Words that mean similar things get similar numbers. That's how computers understand language — not by reading words, but by comparing number patterns.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>What does a word look like as numbers?</h3><span class="num">Example 1</span></div>
+    <div class="card-body">
+      <div class="explain">
+        Imagine giving every word a coordinate in a 3D space:<br><br>
+        <b>Axis 1 — Royalty:</b> how "royal" the word is (king=high, dog=low)<br>
+        <b>Axis 2 — Maleness:</b> how masculine the word is (man=high, woman=low)<br>
+        <b>Axis 3 — Animal:</b> how animal-like the word is (dog=high, king=low)<br><br>
+        Real embeddings have 768–4096 axes — we use 3 here to make it visible.
+        Click a word below to see its numbers:
+      </div>
+      <div class="word-grid">
+        <button class="btn-sm" onclick="showEmbedding('king')">king</button>
+        <button class="btn-sm" onclick="showEmbedding('queen')">queen</button>
+        <button class="btn-sm" onclick="showEmbedding('man')">man</button>
+        <button class="btn-sm" onclick="showEmbedding('woman')">woman</button>
+        <button class="btn-sm" onclick="showEmbedding('dog')">dog</button>
+        <button class="btn-sm" onclick="showEmbedding('cat')">cat</button>
+        <button class="btn-sm" onclick="showEmbedding('lion')">lion</button>
+      </div>
+      <div class="output" id="embed-output">Click any word above to see its vector.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Similar words = similar numbers</h3><span class="num">Example 2</span></div>
+    <div class="card-body">
+      <div class="explain">
+        Two words are "similar" when their vectors point in the same direction.
+        We measure this with <b>cosine similarity</b> (0% = totally different, 100% = identical).<br><br>
+        Try comparing: <b>king vs queen</b> (both royal → should be similar), then <b>king vs dog</b> (very different).
+      </div>
+      <div class="interactive">
+        <label>Word 1</label>
+        <select id="cmp-w1">
+          <option>king</option><option>queen</option><option>man</option>
+          <option>woman</option><option>dog</option><option>cat</option><option>lion</option>
+        </select>
+        <label>Word 2</label>
+        <select id="cmp-w2">
+          <option>queen</option><option>king</option><option>man</option>
+          <option>woman</option><option>dog</option><option>cat</option><option>lion</option>
+        </select>
+        <button class="btn" onclick="compareWords()">Compare</button>
+        <div class="output" id="cmp-output">Select two words and compare.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>word2vec Magic: king − man + woman = queen</h3><span class="num">Example 3</span></div>
+    <div class="card-body">
+      <div class="explain">
+        The most famous example in all of NLP. Here's the intuition:<br><br>
+        <div class="step">
+          <span class="step-num">1</span>
+          <span><b>king − man</b> = removes the "maleness" from king, leaves only "royalty"</span>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <span><b>+ woman</b> = adds "femaleness" to that royalty vector</span>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <span><b>Find nearest word</b> to the result — and it's <b>queen</b>!</span>
+        </div>
+        <br>
+        This works because word2vec learned these directions from reading millions of sentences.
+      </div>
+      <button class="btn" onclick="runAnalogy()">Run the Analogy</button>
+      <div class="output" id="analogy-output">Click to see the step-by-step arithmetic.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>BERT vs ColBERT — one vector vs many vectors</h3><span class="num">Example 4</span></div>
+    <div class="card-body">
+      <div class="explain">
+        <b>BERT</b> reads a whole sentence and squishes it into <b>one single vector</b>. The problem: the word "bank" (river bank vs. financial bank) gets the same treatment — detail is lost.<br><br>
+        <b>ColBERT</b> keeps <b>one vector per word/token</b>. When searching, each query word matches the best document word separately. Much more precise — especially for multi-word queries.
+      </div>
+      <button class="btn" onclick="showBERTvsColBERT()">See BERT vs ColBERT on "bank loan"</button>
+      <div class="output" id="bert-output">Click to see how both models handle an ambiguous query.</div>
+      <div class="tag-row">
+        <span class="tag blue">BERT: 1 vector/doc</span>
+        <span class="tag green">ColBERT: 1 vector/token</span>
+        <span class="tag amber">ColBERT: more storage</span>
+        <span class="tag purple">ColBERT: better precision</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     TOPIC 2 — MTEB Benchmark
+════════════════════════════════════════════ -->
+<div class="topic" id="t2">
+  <span class="topic-section-label">D1 — Embeddings + Vector Databases</span>
+  <div class="topic-header">
+    <h2>Embedding Model Evaluation — MTEB Benchmark</h2>
+    <p>MTEB (Massive Text Embedding Benchmark) tests embedding models on 56 datasets across 8 task types. Before you pick a model, check its MTEB score on the task that matches YOUR use case. A model that wins on sentence similarity may lose on retrieval.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>MTEB Leaderboard — pick a task type</h3><span class="num">Example 1</span></div>
+    <div class="card-body">
+      <div class="explain">
+        <b>STS (Sentence Textual Similarity):</b> "Are these two sentences saying the same thing?" — used in duplicate detection, clustering.<br>
+        <b>Retrieval (nDCG@10):</b> "Given a query, did the model find the right documents in the top 10?" — this is the RAG score. Use this.<br><br>
+        Notice how <b>e5-mistral-7b</b> wins STS but uses 4096 dimensions (slow + expensive). Sometimes a smaller model is good enough.
+      </div>
+      <div class="interactive">
+        <label>Task Type</label>
+        <select id="mteb-task" onchange="renderMTEB()">
+          <option value="sts">STS — Sentence Similarity</option>
+          <option value="retrieval">Retrieval — RAG / Search</option>
+        </select>
+        <div class="output" id="mteb-out" style="min-height:180px"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Which model should I use?</h3><span class="num">Example 2</span></div>
+    <div class="card-body">
+      <div class="explain">
+        <b>Dimensions matter:</b> 384-dim = fast & small. 4096-dim = slow & accurate.<br>
+        <b>Open source:</b> run locally for free, but you need a GPU for large models.<br>
+        <b>API-based:</b> no setup, but costs money per million tokens.<br><br>
+        Select your situation and get a concrete recommendation:
+      </div>
+      <div class="interactive">
+        <label>My situation</label>
+        <select id="mteb-use">
+          <option value="rag_prod">Building RAG in production (paid API OK)</option>
+          <option value="rag_free">Building RAG, must be free / self-hosted</option>
+          <option value="similarity">Finding similar sentences / clustering</option>
+          <option value="fast">Need fastest possible inference (prototyping)</option>
+          <option value="openai">Already using OpenAI, want best OpenAI model</option>
+        </select>
+        <button class="btn" onclick="pickModel()">Recommend a Model</button>
+        <div class="output" id="mteb-pick">Select your situation and get a recommendation.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     TOPIC 3 — Vector Similarity
+════════════════════════════════════════════ -->
+<div class="topic" id="t3">
+  <span class="topic-section-label">D1 — Embeddings + Vector Databases</span>
+  <div class="topic-header">
+    <h2>Vector Similarity — Cosine, Dot Product, Euclidean</h2>
+    <p>Once you have two vectors, you need a formula to measure how similar they are. Three common formulas exist — each one asks a different question about the vectors. Using the wrong one quietly hurts your retrieval quality.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Live similarity calculator — see all three formulas</h3><span class="num">Example 1</span></div>
+    <div class="card-body">
+      <div class="explain">
+        Enter any two vectors (same number of values, comma-separated) and see all three metrics calculated with the formula shown step by step.<br><br>
+        <b>Try this:</b> A = <code>1, 0, 0</code> and B = <code>1, 0, 0</code> (identical) — cosine = 1.0<br>
+        <b>Then try:</b> A = <code>1, 0, 0</code> and B = <code>0, 1, 0</code> (perpendicular) — cosine = 0.0
+      </div>
+      <div class="interactive">
+        <label>Vector A (comma-separated numbers)</label>
+        <input id="s-vec1" value="1, 2, 3" />
+        <label>Vector B (comma-separated numbers)</label>
+        <input id="s-vec2" value="1, 2, 4" />
+        <button class="btn" onclick="calcSim()">Calculate All Three</button>
+        <div class="output" id="sim-out" style="min-height:200px">Enter vectors and calculate.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>When to use each metric</h3><span class="num">Example 2</span></div>
+    <div class="card-body">
+      <div class="explain">
+        <b>Cosine Similarity</b> — asks "do these vectors point in the same direction?"<br>
+        It ignores the length (magnitude) of the vectors. Two sentences about "dogs" will point in the same direction whether the text is short or long.<br><br>
+        <b>Dot Product</b> — asks "same direction AND how strong?"<br>
+        A longer sentence might have a bigger vector, so it scores higher even for the same topic. Only use this if your vectors are unit-normalized (length = 1).<br><br>
+        <b>Euclidean Distance</b> — asks "how far apart are these points in space?"<br>
+        Works well for low-dimensional data (GPS, images). Breaks down for high-dimensional text embeddings (curse of dimensionality).
+      </div>
+      <button class="btn" onclick="showSimWhen()">Show Real-World Decision Guide</button>
+      <div class="output" id="sim-when">Click to see which metric to pick for your use case.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     TOPIC 4 — HNSW Index
+════════════════════════════════════════════ -->
+<div class="topic" id="t4">
+  <span class="topic-section-label">D1 — Embeddings + Vector Databases</span>
+  <div class="topic-header">
+    <h2>HNSW Index — Fast Approximate Nearest Neighbour Search</h2>
+    <p>You have 10 million document embeddings. To find the most similar one to your query, brute force would compare all 10 million — that takes seconds. HNSW finds nearly the same answer in under 10 milliseconds by building a smart graph.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Why do we need a special index?</h3><span class="num">Example 1</span></div>
+    <div class="card-body">
+      <div class="explain">
+        <b>Brute force search:</b><br>
+        Compare query to every document → 10M comparisons × 1536 multiplications = billions of operations per query.<br><br>
+        <b>HNSW (Approximate Nearest Neighbour):</b><br>
+        Build a graph once at index time. At query time, navigate the graph — visit only ~100–200 nodes instead of millions.<br><br>
+        Trade-off: you get <b>~99% of the right answers</b> at <b>1000× the speed</b>. That 1% miss is acceptable for search.
+      </div>
+      <div class="step-visual">
+        <div class="step-row"><span class="s-num">1</span><span class="s-text">You upload 10M documents → each gets embedded → stored in HNSW graph</span></div>
+        <div class="step-row"><span class="s-num">2</span><span class="s-text">User asks a question → question gets embedded → <b>query vector</b></span></div>
+        <div class="step-row"><span class="s-num">3</span><span class="s-text">HNSW navigates the graph, visits ~150 nodes (not 10M), finds nearest</span></div>
+        <div class="step-row"><span class="s-num">4</span><span class="s-text">Returns top-k most similar documents in &lt;10ms</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>HNSW search — tune M and ef_search</h3><span class="num">Example 2</span></div>
+    <div class="card-body">
+      <div class="explain">
+        <b>M</b> = how many neighbours each node connects to in the graph. Higher M = better connections = better recall, but more memory and slower build.<br><br>
+        <b>ef_search</b> = how many candidate nodes to explore during a query. Higher = more accurate, but slower. You can tune this without rebuilding the index.
+      </div>
+      <div class="interactive">
+        <label>M — graph connections per node (typical: 16)</label>
+        <input id="hnsw-m" type="number" value="16" min="4" max="64" />
+        <label>ef_search — candidate pool size (typical: 100)</label>
+        <input id="hnsw-ef" type="number" value="100" min="10" max="500" />
+        <button class="btn" onclick="runHNSW()">Run Search</button>
+        <div class="output" id="hnsw-out" style="min-height:200px">Set parameters and run a search.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>The "Hierarchical" part — how layers work</h3><span class="num">Example 3</span></div>
+    <div class="card-body">
+      <div class="explain">
+        HNSW builds multiple layers — like a city with highways, main roads, and side streets.<br><br>
+        <b>Top layer:</b> Very few nodes, long connections → lets you jump far quickly<br>
+        <b>Middle layers:</b> More nodes, medium connections → narrow down to the right area<br>
+        <b>Bottom layer (0):</b> All nodes, short connections → precise local search<br><br>
+        Search starts at the top (fast rough navigation) and drills down to the bottom (precise result).
+      </div>
+      <button class="btn" onclick="showHNSWLayers()">Show Layer Diagram + Parameter Guide</button>
+      <div class="output" id="hnsw-layers" style="min-height:200px">Click to see the layered graph diagram.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Topic 5: Chunking -->
+<div class="topic" id="t5">
+  <span class="topic-section-label">D1 — Embeddings + Vector Databases</span>
+  <div class="topic-header">
+    <h2>Chunking Strategies for RAG</h2>
+    <p>Raw documents are too big for embeddings. Split them into smart chunks: not too small (lose context) or too big (dilute relevance). Wrong chunking is the #1 hidden cause of RAG failures.</p>
+  </div>
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Fixed Size Chunking:</b> Simple 512-token chunks, causes context breaks<br>
+        ★ <b>Recursive Chunking:</b> Split on paragraph, sentence, word — preserve meaning<br>
+        ★ <b>Semantic Chunking:</b> Use embeddings to find natural boundaries<br>
+        ★ <b>Sliding Window:</b> Overlapping chunks (50% overlap prevents info loss)<br>
+        ★ <b>Parent-Child Chunks:</b> Small chunks for search, large chunks for context
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Chunk size:</b> 256-512 tokens optimal (too small = lose context, too big = dilute relevance)<br>
+        › <b>Overlap:</b> 20-50 tokens (prevents cutting answers in half)<br>
+        › <b>Fixed size:</b> Fast, simple, loses document structure<br>
+        › <b>Recursive:</b> Langchain default, respects paragraphs → sentences → words<br>
+        › <b>Semantic:</b> Run embeddings on chunks, merge low-similarity neighbors<br>
+        › <b>Sliding window:</b> token_start = 0; next = current + 256 - 50 overlap<br>
+        › <b>Parent-child:</b> Index small chunks (256T), retrieve context from parent (1024T)<br>
+        › <b>Metadata:</b> Keep doc_id, page_number, section headers in chunk metadata
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Live chunking demo</h3></div>
+    <div class="card-body">
+      <div class="interactive">
+        <label>Strategy</label>
+        <select id="chunk-strat">
+          <option value="fixed">Fixed Size</option>
+          <option value="recursive">Recursive</option>
+          <option value="semantic">Semantic</option>
+          <option value="sliding">Sliding Window</option>
+        </select>
+        <label>Chunk size (tokens)</label>
+        <input id="chunk-sz" type="number" value="256" />
+        <label>Overlap (tokens)</label>
+        <input id="chunk-ov" type="number" value="50" />
+        <button class="btn" onclick="runChunk()">Split the Text</button>
+        <div id="chunk-out" class="output" style="min-height:150px"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">LangChain</span>
+      <span class="tag green">Llamaindex</span>
+      <span class="tag amber">Semantic Chunker</span>
+      <span class="tag purple">Document Loaders</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build chunking optimizer:</b> Load 100-page PDF, chunk with 5 strategies, measure retrieval quality (which chunks get retrieved for test questions?). Document which strategy wins for your document type.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 6: Vector DB -->
+<div class="topic" id="t6">
+  <span class="topic-section-label">D1 — Embeddings + Vector Databases</span>
+  <div class="topic-header">
+    <h2>Vector Database Comparison</h2>
+    <p>Pinecone vs Weaviate vs Chroma vs Milvus — each database makes different tradeoffs. Match the right database to your constraints: latency, cost, infrastructure, reliability.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Pinecone:</b> Fully managed, no setup, pay per request<br>
+        ★ <b>Weaviate:</b> Self-hosted, hybrid search, GraphQL API<br>
+        ★ <b>Chroma:</b> Lightweight, local/embedded, perfect for prototypes<br>
+        ★ <b>Milvus:</b> High-performance, open-source, Kubernetes-ready
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Pinecone:</b> Hosted API, serverless scaling, 25M vectors free tier<br>
+        › <b>Weaviate:</b> On-prem or cloud, HNSW + BM25 hybrid, GraphQL interface<br>
+        › <b>Chroma:</b> Python library, in-memory or persistent, no infra needed<br>
+        › <b>Milvus:</b> Distributed, 100M+ vectors, strong consistency guarantees<br>
+        › <b>Qdrant:</b> Quantization-first, filter performance, payload filtering<br>
+        › <b>Cost comparison:</b> API-based vs self-hosted tradeoffs<br>
+        › <b>Latency benchmarks:</b> p50, p95, p99 query times at scale
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Compare databases</h3></div>
+    <div class="card-body">
+      <div class="interactive">
+        <label>My situation</label>
+        <select id="db-use" onchange="filterDBs()">
+          <option value="prototype">Prototype (need fast start)</option>
+          <option value="production">Production (scale to 1M+ vectors)</option>
+          <option value="hybrid">Hybrid search needed</option>
+          <option value="onprem">On-premise required</option>
+        </select>
+        <div id="db-out" class="output"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">Pinecone</span>
+      <span class="tag green">Weaviate</span>
+      <span class="tag amber">Chroma</span>
+      <span class="tag purple">Milvus</span>
+      <span class="tag cyan">Qdrant</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build multi-database abstraction layer:</b> Implement a Python wrapper that works with any DB backend. Benchmark query latency on 1M vector dataset. Document which DB wins for your use case.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 7: Hybrid Search -->
+<div class="topic" id="t7">
+  <span class="topic-section-label">D1 — Embeddings + Vector Databases</span>
+  <div class="topic-header">
+    <h2>Hybrid Search (Keyword + Vector)</h2>
+    <p>Vector search alone misses exact matches and acronyms. Combine keyword search (BM25) with vector search, rank results with RRF (Reciprocal Rank Fusion), get the best of both worlds.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>BM25:</b> TF-IDF based keyword search, fast, matches exact phrases<br>
+        ★ <b>Vector Search:</b> Semantic matching across topics and paraphrasing<br>
+        ★ <b>Reciprocal Rank Fusion (RRF):</b> Combine rankings without comparing scores
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>BM25 algorithm:</b> Term frequency, inverse document frequency, saturation<br>
+        › <b>Vector search limitations:</b> Misses exact phrases, acronyms, numbers<br>
+        › <b>Hybrid search benefits:</b> 15-20% better precision than either alone<br>
+        › <b>RRF formula:</b> score = 1/(rank+60) — rank aggregation without comparing scores<br>
+        › <b>Implementation:</b> Weaviate, Elasticsearch, Pinecone hybrid<br>
+        › <b>Weighting strategies:</b> 70% vector + 30% BM25 vs dynamic weights<br>
+        › <b>Real-world gains:</b> Legal docs (+25% precision), product catalogues (+18%)
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Compare search modes</h3></div>
+    <div class="card-body">
+      <div class="interactive">
+        <label>Search Query</label>
+        <input id="hs-query" value="beginner python" />
+        <label>Mode</label>
+        <select id="hs-mode"><option value="hybrid">Hybrid (BM25 + Vector)</option><option value="vector">Vector Only</option><option value="keyword">Keyword (BM25) Only</option></select>
+        <button class="btn" onclick="runSearch()">Search</button>
+        <div id="hs-out" class="output" style="min-height:150px"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">Elasticsearch</span>
+      <span class="tag green">Weaviate</span>
+      <span class="tag amber">Pinecone</span>
+      <span class="tag purple">Qdrant</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Implement hybrid search for customer support docs:</b> Add BM25 to your vector search setup. Evaluate retrieval quality on test questions. Measure precision improvement with RRF ranking.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 8: Quantization -->
+<div class="topic" id="t8">
+  <span class="topic-section-label">D1 — Embeddings + Vector Databases</span>
+  <div class="topic-header">
+    <h2>Quantization (Compress Vectors)</h2>
+    <p>Full-precision embeddings (768 float32 = 3KB per vector) are expensive. Quantize to 8-bit integers (1/4 the size), keep 97% of quality. Trade 3% accuracy for 4x cheaper storage and faster search.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Product Quantization (PQ):</b> Divide vector into subspaces, quantize each<br>
+        ★ <b>Scalar Quantization:</b> Round to fewer bits (float32 → int8)<br>
+        ★ <b>Binary Quantization:</b> Vectors as single bits (96% space savings)
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>float32:</b> 768 dims × 4 bytes = 3KB per vector<br>
+        › <b>int8:</b> 768 dims × 1 byte = 768 bytes per vector (75% savings)<br>
+        › <b>Binary:</b> 768 dims ÷ 8 = 96 bytes (96% savings, recall loss ~5%)<br>
+        › <b>Product Quantization:</b> Split 768D → 8 × 96D subquantizers<br>
+        › <b>Tradeoffs:</b> Size vs accuracy vs speed<br>
+        › <b>Benchmarks:</b> 1M vectors: 3GB (float32) vs 750MB (int8) vs 96MB (binary)<br>
+        › <b>When to quantize:</b> Static knowledge bases, not real-time learning
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Storage calculator</h3></div>
+    <div class="card-body">
+      <div class="interactive">
+        <label>Embedding dimensions</label>
+        <input id="q-dims" type="number" value="1536" />
+        <label>Number of documents</label>
+        <input id="q-count" type="number" value="1000000" />
+        <button class="btn" onclick="calcStorage()">Calculate Storage Needed</button>
+        <div id="q-out" class="output" style="min-height:150px"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">FAISS (PQ)</span>
+      <span class="tag green">Hnswlib (int8)</span>
+      <span class="tag amber">Pinecone (PQ)</span>
+      <span class="tag purple">BitsAndBytes</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Quantization benchmark:</b> Quantize your embedding model to int8 and binary. Measure storage reduction and recall@k impact. Compare against full-precision baseline.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 9: RAG vs Fine-tuning -->
+<div class="topic" id="t9">
+  <span class="topic-section-label">D2 — RAG Pipelines</span>
+  <div class="topic-header">
+    <h2>RAG vs Fine-tuning Decision Framework</h2>
+    <p>Have domain data? Two paths: RAG (retrieve external docs) or fine-tune (bake knowledge into weights). Costs, latency, and flexibility are very different.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>RAG:</b> Retrieve current docs, 100ms latency, $0.001/query<br>
+        ★ <b>Fine-tune:</b> Bake knowledge in model, instant (no retrieval), requires training<br>
+        ★ <b>Hybrid:</b> Fine-tune + RAG for maximum quality
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>When to RAG:</b> Knowledge changes monthly, budget-conscious, need explanations<br>
+        › <b>When to fine-tune:</b> Stable knowledge base, formatting critical, high volume<br>
+        › <b>When to hybrid:</b> Knowledge half-changes, zero tolerance for errors<br>
+        › <b>RAG costs:</b> Token costs for LLM only<br>
+        › <b>Fine-tune costs:</b> GPU compute + inference (model serving)<br>
+        › <b>Latency:</b> RAG ~150-500ms (retrieval + generation), FT ~300ms (inference only)<br>
+        › <b>Data requirements:</b> RAG needs 0 examples, FT needs 100-1000<br>
+        › <b>Eval metrics:</b> Accuracy, latency, cost per query, knowledge freshness
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Decision Framework</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showRAGvsFT()">Show Decision Tree</button>
+      <div id="ragft-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">LangChain</span>
+      <span class="tag green">Hugging Face</span>
+      <span class="tag amber">vLLM</span>
+      <span class="tag purple">TRL</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build decision matrix:</b> For your use case (100K queries/month of domain data), simulate costs and accuracy for both RAG and fine-tuning approaches.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 10: Advanced Retrieval -->
+<div class="topic" id="t10">
+  <span class="topic-section-label">D2 — RAG Pipelines</span>
+  <div class="topic-header">
+    <h2>Advanced Retrieval Techniques</h2>
+    <p>Basic vector search misses questions phrased differently. Use HyDE (generate hypothetical answers), Multi-query (rewrite questions), Step-back (go abstract), or Reranking to find the right documents.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>HyDE:</b> Generate fake answer, search for it<br>
+        ★ <b>Multi-query:</b> Rewrite question 5 ways, search all<br>
+        ★ <b>Step-back:</b> Generalize question, retrieve broader context<br>
+        ★ <b>Reranking:</b> Re-score top-100 with expensive model
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>HyDE (Hypothetical Document Embeddings):</b> User query → Generate answer → Use answer embedding to search<br>
+        › <b>Multi-query:</b> "What's the fastest GPU?" → Rewrites: "GPUs by speed", "GPU benchmarks"<br>
+        › <b>Step-back:</b> "How to fine-tune BERT on medical text?" → Generalizes to "Fine-tuning transformer models"<br>
+        › <b>Reranking:</b> Top-100 from vector search → Cross-encoder re-scores → Top-10 final<br>
+        › <b>Latency impact:</b> +50-200ms per technique<br>
+        › <b>Recall improvement:</b> +5-15% with HyDE, +10-20% with multi-query<br>
+        › <b>Combining:</b> HyDE + Multi-query + Reranking = 25-30% better recall
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Try each technique</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showHyDE()">See HyDE</button>
+      <button class="btn" onclick="showStepBack()" style="margin-left:10px">See Step-back</button>
+      <button class="btn" onclick="showMultiQuery()" style="margin-left:10px">See Multi-query</button>
+      <div id="hyde-out" class="output" style="min-height:150px; margin-top:15px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">LangChain</span>
+      <span class="tag green">Cohere Rerank</span>
+      <span class="tag amber">Jina Reranker</span>
+      <span class="tag purple">LlamaIndex</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Implement multi-query + reranking:</b> Add to your RAG pipeline. Measure recall@10 improvement. Benchmark latency impact vs accuracy gain.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 11: Production RAG -->
+<div class="topic" id="t11">
+  <span class="topic-section-label">D2 — RAG Pipelines</span>
+  <div class="topic-header">
+    <h2>Production RAG Architecture</h2>
+    <p>A toy RAG works on 1K docs. Production RAG handles 100M documents, 500 QPS, latency SLAs, hallucination prevention, and explainability. Learn the 7-stage pipeline.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Input Processing:</b> Validate, sanitize, rate limit<br>
+        ★ <b>Query Rewriting:</b> Expand abbreviations, fix typos<br>
+        ★ <b>Multi-strategy Retrieval:</b> BM25 + Vector + Semantic<br>
+        ★ <b>Contextual Compression:</b> Keep only relevant sentences<br>
+        ★ <b>Reranking:</b> Second-pass scoring<br>
+        ★ <b>Generation:</b> Call LLM with context<br>
+        ★ <b>Quality Check:</b> Detect hallucinations
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Input processing:</b> 10s of ms, prevent injection attacks<br>
+        › <b>Query rewriting:</b> LLM-based (fast) or rule-based (instant)<br>
+        › <b>Retrieval:</b> Query → Vector search (50ms) + BM25 (10ms) in parallel<br>
+        › <b>Compression:</b> Remove redundant context, keep diversity<br>
+        › <b>Reranking:</b> Top-100 → Cross-encoder → Top-10 (100-200ms)<br>
+        › <b>Generation:</b> Constrain prompt, set max_tokens, temperature=0<br>
+        › <b>Quality:</b> Faithfulness check, answer relevance<br>
+        › <b>Caching:</b> Store frequent question answers (50% QPS improvement)<br>
+        › <b>Monitoring:</b> Latency, accuracy, cost per query, cache hit rate
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>7-Stage Pipeline</h3></div>
+    <div class="card-body">
+      <div class="step-visual">
+        <div class="step-row"><span class="s-num">1</span><span class="s-text"><b>Input Processing</b> - Validate & sanitize</span></div>
+        <div class="step-row"><span class="s-num">2</span><span class="s-text"><b>Query Rewriting</b> - Fix typos, expand abbreviations</span></div>
+        <div class="step-row"><span class="s-num">3</span><span class="s-text"><b>Multi-query Retrieval</b> - BM25 + Vector parallel</span></div>
+        <div class="step-row"><span class="s-num">4</span><span class="s-text"><b>Contextual Compression</b> - Remove redundancy</span></div>
+        <div class="step-row"><span class="s-num">5</span><span class="s-text"><b>Reranking</b> - Cross-encoder scoring</span></div>
+        <div class="step-row"><span class="s-num">6</span><span class="s-text"><b>Generation</b> - LLM with context</span></div>
+        <div class="step-row"><span class="s-num">7</span><span class="s-text"><b>Quality Check</b> - Hallucination detection</span></div>
+      </div>
+      <button class="btn" onclick="runProdRAG()" style="margin-top:14px">▶ Run a query through all 7 stages</button>
+      <div id="prod-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">LangChain</span>
+      <span class="tag green">LlamaIndex</span>
+      <span class="tag amber">Ragas</span>
+      <span class="tag purple">Langsmith</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build 7-stage pipeline:</b> Implement all stages on 1M doc dataset. Achieve <500ms p95 latency. Monitor each stage's latency contribution.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 12: RAGAS -->
+<div class="topic" id="t12">
+  <span class="topic-section-label">D3 — Advanced RAG + Evaluation</span>
+  <div class="topic-header">
+    <h2>RAGAS Evaluation Framework</h2>
+    <p>How good is your RAG system? RAGAS measures Faithfulness (not hallucinating), Context Relevance (retrieving right docs), Answer Relevance (answering the question), and Ground Truth if you have it.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Faithfulness:</b> Is answer grounded in context? (0-1 score)<br>
+        ★ <b>Context Relevance:</b> Is retrieved context useful? (0-1 score)<br>
+        ★ <b>Answer Relevance:</b> Does answer address question? (0-1 score)<br>
+        ★ <b>Aspect Ratio:</b> Combined metric across all three
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Faithfulness (0.0-1.0):</b> Given context, is answer factually correct?<br>
+        › <b>Context Relevance (0.0-1.0):</b> Do top-5 docs actually help answer question?<br>
+        › <b>Answer Relevance (0.0-1.0):</b> Does output answer the input question?<br>
+        › <b>Aspect Ratio:</b> Harmonic mean of the three<br>
+        › <b>Ground Truth comparison:</b> If you have gold answers, measure exact/semantic match<br>
+        › <b>Running RAGAS:</b> 2-3 seconds per (question, context, answer) triple<br>
+        › <b>Thresholds:</b> >0.8 is good, >0.9 is excellent, <0.5 needs rework<br>
+        › <b>Dataset:</b> Evaluate on 50+ diverse questions for confidence
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>RAGAS Metrics Dashboard</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showRagasMetrics()">Show Metrics Example</button>
+      <div id="ragas-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">RAGAS</span>
+      <span class="tag green">Langsmith</span>
+      <span class="tag amber">Arize</span>
+      <span class="tag purple">DeepEval</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Evaluate your RAG system:</b> Create test set of 50+ questions. Run RAGAS evaluation. Create leaderboard comparing different retrieval strategies (vector only, BM25, hybrid, etc.).
+    </div>
+  </div>
+</div>
+
+<!-- Topic 13: Agentic RAG -->
+<div class="topic" id="t13">
+  <span class="topic-section-label">D3 — Advanced RAG + Evaluation</span>
+  <div class="topic-header">
+    <h2>Agentic RAG (Self-Correcting)</h2>
+    <p>Basic RAG returns wrong answer once. Agentic RAG detects "I don't know the answer" and re-retrieves. Add self-reflection: "Is this answer good?" Loop until confident.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Self-RAG:</b> Critique output, retrieve more if needed<br>
+        ★ <b>Adaptive Retrieval:</b> Decide if you need to search<br>
+        ★ <b>Iterative Refinement:</b> Multi-hop questions decomposed<br>
+        ★ <b>Confidence Scoring:</b> Stop when confident enough
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Self-RAG:</b> Generate answer → Critique answer → If bad, retrieve more docs<br>
+        › <b>Adaptive:</b> Ask "Do I need to search?" before each retrieval<br>
+        › <b>Iterative:</b> "What's the CEO's favorite food?" → Sub-question 1: CEO name, Sub-q 2: favorite food<br>
+        › <b>Confidence:</b> Only return answer if faithfulness >0.8, else retry<br>
+        › <b>Implementation:</b> ReAct (Reasoning + Acting), Tool use<br>
+        › <b>Latency:</b> 2-3x slower than single-pass RAG (300-500ms vs 1-2s)<br>
+        › <b>Accuracy gain:</b> +10-20% for complex questions
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Self-RAG Example</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showSelfRAG()">See Self-RAG Loop</button>
+      <div id="selfrag-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">LangGraph</span>
+      <span class="tag green">AutoGPT</span>
+      <span class="tag amber">Tool Use APIs</span>
+      <span class="tag purple">ReAct</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build self-correcting RAG agent:</b> Implement critique loop. Measure accuracy on ambiguous questions. Compare against non-agentic RAG baseline.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 14: Hallucination Detection -->
+<div class="topic" id="t14">
+  <span class="topic-section-label">D3 — Advanced RAG + Evaluation</span>
+  <div class="topic-header">
+    <h2>Hallucination Detection & Mitigation</h2>
+    <p>Even state-of-the-art models hallucinate (invent facts). Detect with NLI (Natural Language Inference), prevent with constrained decoding, mitigate by requiring citations.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>NLI-based Detection:</b> Entailment between context and answer<br>
+        ★ <b>Self-Consistency:</b> Multiple generations → vote on answer<br>
+        ★ <b>Citation-based:</b> Force model to quote sources<br>
+        ★ <b>Constrained Decoding:</b> Only generate tokens from retrieved docs
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>NLI check:</b> Answer must be entailed by context (contradiction score < 0.3)<br>
+        › <b>Self-consistency:</b> Generate answer 5 ways, aggregate with majority vote<br>
+        › <b>Citation forcing:</b> "According to document X, the answer is..."<br>
+        › <b>Constrained tokens:</b> Use token IDs from context only<br>
+        › <b>Hallucination rates:</b> GPT-4 ~5%, Claude ~3%, Llama ~8% on RAG<br>
+        › <b>Zero hallucination:</b> Trade accuracy for safety (avoid weak answers)<br>
+        › <b>Monitoring:</b> Track "unsupported claims" in production
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>3 Types of Hallucination</h3></div>
+    <div class="card-body">
+      <div class="step-visual">
+        <div class="step-row"><span class="s-num">1</span><span class="s-text"><b>Extrinsic:</b> Facts not in documents</span></div>
+        <div class="step-row"><span class="s-num">2</span><span class="s-text"><b>Intrinsic:</b> Self-contradiction</span></div>
+        <div class="step-row"><span class="s-num">3</span><span class="s-text"><b>Logic:</b> Invalid reasoning</span></div>
+      </div>
+      <button class="btn" onclick="showHalluTypes()" style="margin-top:14px">▶ See real-world examples</button>
+      <div id="hallu-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">RoBERTa-NLI</span>
+      <span class="tag green">Guidance</span>
+      <span class="tag amber">GBNF</span>
+      <span class="tag purple">LLMGuard</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Implement NLI detector + citation forcing:</b> Build detector for extrinsic hallucinations. Force model to cite sources. Measure hallucination rate reduction.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 15: Agent Memory -->
+<div class="topic" id="t15">
+  <span class="topic-section-label">D4 — AI Agents — Architecture</span>
+  <div class="topic-header">
+    <h2>Agent Memory Systems</h2>
+    <p>Agents need memory: short-term (current conversation), long-term (learned facts), episodic (past interactions). Design memory so the agent improves over time.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Short-term:</b> Current conversation context (100K tokens)<br>
+        ★ <b>Long-term:</b> Learned facts, embeddings (vector database)<br>
+        ★ <b>Episodic:</b> Past successes/failures for reflection
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Short-term memory:</b> Message history, current task state<br>
+        › <b>Long-term:</b> Embeddings of facts, lessons learned<br>
+        › <b>Episodic:</b> Logs of "when I did X, result was Y"<br>
+        › <b>Consolidation:</b> Summarize old conversations, store key facts<br>
+        › <b>Retrieval:</b> Given current query, fetch relevant memories<br>
+        › <b>Capacity limits:</b> 100K tokens max context, prioritize recent<br>
+        › <b>Decay:</b> Forget old memories gradually, stronger recall for successful interactions<br>
+        › <b>Implementation:</b> Vector DB + SQLite for episodic logs
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Memory Types</h3></div>
+    <div class="card-body">
+      <div class="step-visual">
+        <div class="step-row"><span class="s-num">1</span><span class="s-text">Short-term: Current conversation context</span></div>
+        <div class="step-row"><span class="s-num">2</span><span class="s-text">Long-term: Vector DB of past interactions</span></div>
+        <div class="step-row"><span class="s-num">3</span><span class="s-text">Episodic: Key events and decisions</span></div>
+        <div class="step-row"><span class="s-num">4</span><span class="s-text">Semantic: Facts and general knowledge</span></div>
+      </div>
+      <button class="btn" onclick="showAgentMemory()" style="margin-top:14px">▶ See an agent learning across sessions</button>
+      <div id="memory-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">LangChain Memory</span>
+      <span class="tag green">Mem0</span>
+      <span class="tag amber">ChromaDB</span>
+      <span class="tag purple">SQLite</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build agent that learns from failures:</b> Implement vector memory for past interactions. When encountering similar problem, retrieve past solution. Measure improvement on repeated questions.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 16: Multi-Agent Orchestration -->
+<div class="topic" id="t16">
+  <span class="topic-section-label">D4 — AI Agents — Architecture</span>
+  <div class="topic-header">
+    <h2>Multi-Agent Orchestration</h2>
+    <p>One agent can't do everything. Build supervisor agent that routes tasks to specialists (retrieval agent, code agent, search agent), aggregates answers, then decides final response.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Agent Types:</b> Specialized vs General<br>
+        ★ <b>Routing:</b> Supervisor decides which agent handles task<br>
+        ★ <b>Tool Allocation:</b> Each agent has different tools<br>
+        ★ <b>Consensus:</b> Merge answers from multiple agents
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Supervisor pattern:</b> Main agent routes to sub-agents<br>
+        › <b>Tool specialization:</b> Retrieval agent knows DBs, Code agent knows coding<br>
+        › <b>Tool calling:</b> Agent decides when to use which tool<br>
+        › <b>Handoff:</b> Agent A exhausted, hand off to Agent B with context<br>
+        › <b>Voting:</b> Multiple agents solve same problem, consensus answer<br>
+        › <b>Explainability:</b> Track which agent answered, why<br>
+        › <b>Fault tolerance:</b> If one agent fails, try another<br>
+        › <b>Performance:</b> Parallel vs sequential agent execution
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Coordination Patterns</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showOrchestration()">Show Orchestration Patterns</button>
+      <div id="orch-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">LangGraph</span>
+      <span class="tag green">AutoGen</span>
+      <span class="tag amber">Crew AI</span>
+      <span class="tag purple">LangChain</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build supervisor + 3 specialist agents:</b> Create retrieval agent, math agent, code agent. Build supervisor that routes. Test on 20 diverse questions. Measure accuracy vs single-agent baseline.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 17: LangGraph -->
+<div class="topic" id="t17">
+  <span class="topic-section-label">D4 — AI Agents — Architecture</span>
+  <div class="topic-header">
+    <h2>LangGraph Architecture</h2>
+    <p>LangGraph is a framework for agentic workflows. Define nodes (agents/functions), edges (transitions), and a graph execution model that handles loops, branching, and tool use.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Nodes:</b> Code blocks (function calls, LLM calls)<br>
+        ★ <b>Edges:</b> Transitions between nodes (conditional or fixed)<br>
+        ★ <b>Cycles:</b> Handle loops (retry, re-planning)<br>
+        ★ <b>Tool Use:</b> Integrate with external APIs
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Node types:</b> Agent (LLM call), Tool (function call), Merge (combine results)<br>
+        › <b>Edges:</b> Named transitions based on agent output<br>
+        › <b>Conditions:</b> IF agent says "retrieve", THEN go to retrieval node<br>
+        › <b>Memory state:</b> Shared across nodes, modified by each node<br>
+        › <b>Tool definitions:</b> JSON schema defining available tools<br>
+        › <b>Error handling:</b> Retry logic, fallback paths<br>
+        › <b>Visualization:</b> Graph can be visualized as DAG<br>
+        › <b>Execution:</b> Breadth-first or depth-first traversal
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Graph Execution Model</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showLangGraph()">Show Graph Example</button>
+      <div id="graph-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">LangGraph</span>
+      <span class="tag green">LangChain</span>
+      <span class="tag amber">StateGraph</span>
+      <span class="tag purple">Checkpointer</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build multi-step workflow:</b> User question → retrieve docs → (if code needed → write code → execute) → generate answer. Use LangGraph to define nodes and edges.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 18: MCP Architecture -->
+<div class="topic" id="t18">
+  <span class="topic-section-label">D5 — MCP + A2A Protocols</span>
+  <div class="topic-header">
+    <h2>MCP Architecture (Model Context Protocol)</h2>
+    <p>MCP is a standardized way for Claude (or any LLM) to call external tools. Define tools once, Claude discovers them automatically, handles tool calls safely.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Tools:</b> Define what Claude can do<br>
+        ★ <b>Resources:</b> Expose data/files to Claude<br>
+        ★ <b>Prompts:</b> System templates for specific domains<br>
+        ★ <b>Sampling:</b> Claude samples from your tools/data
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Tool definition:</b> Name, description, parameters (JSON schema)<br>
+        › <b>Resource definition:</b> Type, URI, MIME type (file/database)<br>
+        › <b>Prompts:</b> Pre-written system prompts for specific tasks<br>
+        › <b>Protocol:</b> JSON-RPC over stdio/HTTP<br>
+        › <b>Tool calling:</b> Claude → MCP Server → External API → Response<br>
+        › <b>Error handling:</b> Tool failures communicated back to Claude<br>
+        › <b>Security:</b> Sandboxed execution, no direct file access<br>
+        › <b>Implementation:</b> Python SDK, TypeScript SDK, Go SDK
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>MCP Flow</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showMCPFlow()">Show Protocol Flow</button>
+      <div id="mcp-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">MCP SDK</span>
+      <span class="tag green">Zed IDE</span>
+      <span class="tag amber">Claude Desktop</span>
+      <span class="tag purple">Python SDK</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build MCP server exposing 3 tools:</b> Implement search tool, database query tool, file read tool. Define JSON schema for each. Test with Claude Desktop client.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 19: Building MCP Servers -->
+<div class="topic" id="t19">
+  <span class="topic-section-label">D5 — MCP + A2A Protocols</span>
+  <div class="topic-header">
+    <h2>Building MCP Servers</h2>
+    <p>Implement an MCP server that exposes your tools to Claude. Define tools in JSON schema, implement handlers, return structured responses.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Server Implementation:</b> Handle JSON-RPC calls<br>
+        ★ <b>Tool Handlers:</b> Implement tool-specific logic<br>
+        ★ <b>Error Handling:</b> Return errors as JSON<br>
+        ★ <b>Authentication:</b> Secure tool access
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Protocol:</b> JSON-RPC 2.0 over stdio/SSE<br>
+        › <b>Request format:</b> {"jsonrpc": "2.0", "method": "tools/call", "params": {...}}<br>
+        › <b>Response format:</b> {"result": {...}} or {"error": {...}}<br>
+        › <b>Handler code:</b> Receive tool name + params, return result<br>
+        › <b>Error codes:</b> -32600 (invalid request), -32601 (tool not found)<br>
+        › <b>Async operations:</b> Tool might take seconds (polling supported)<br>
+        › <b>Logging:</b> Include debug info in responses<br>
+        › <b>Rate limiting:</b> Prevent tool abuse
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Server Implementation</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showMCPServer()">Show Server Code</button>
+      <div id="server-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">MCP SDK</span>
+      <span class="tag green">FastAPI</span>
+      <span class="tag amber">Express</span>
+      <span class="tag purple">Python asyncio</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build server with 3 tools:</b> Weather API tool, calculator tool, Wikipedia search tool. Implement JSON-RPC handlers. Test end-to-end with Claude.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 20: A2A Protocol -->
+<div class="topic" id="t20">
+  <span class="topic-section-label">D5 — MCP + A2A Protocols</span>
+  <div class="topic-header">
+    <h2>A2A Protocol (Agent-to-Agent)</h2>
+    <p>Agents need to talk to each other, pass tasks, and coordinate. A2A defines a message format: Agent Cards (what I can do), Task Lifecycle (assigned → running → done), and SSE streaming.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Agent Cards:</b> Advertise capabilities<br>
+        ★ <b>Task Lifecycle:</b> Assign → Running → Done/Failed<br>
+        ★ <b>Streaming:</b> Real-time progress updates<br>
+        ★ <b>Coordination:</b> Handoff between agents
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Agent Card:</b> Name, description, tools, capabilities<br>
+        › <b>Task format:</b> ID, description, deadline, required outputs<br>
+        › <b>Status transitions:</b> Assigned → Running → Done / Failed<br>
+        › <b>Streaming:</b> SSE (Server-Sent Events) for progress<br>
+        › <b>Handoff:</b> Pass task context from agent A to agent B<br>
+        › <b>Failures:</b> If agent fails, escalate or try different agent<br>
+        › <b>Timeouts:</b> Kill task if exceeds deadline<br>
+        › <b>Logging:</b> Audit trail of which agent did what
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>A2A Communication Flow</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showA2AFlow()">Show A2A Flow</button>
+      <div id="a2a-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">Protocol Buffers</span>
+      <span class="tag green">gRPC</span>
+      <span class="tag amber">SSE</span>
+      <span class="tag purple">WebSockets</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build two agents that coordinate:</b> Agent A retrieves docs, hands off to Agent B for summarization. Implement task handoff with progress streaming. Test end-to-end.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 21: LoRA -->
+<div class="topic" id="t21">
+  <span class="topic-section-label">D6 — Fine-tuning + PEFT</span>
+  <div class="topic-header">
+    <h2>LoRA Deep Dive (Low-Rank Adaptation)</h2>
+    <p>Fine-tune a 7B model by training only 0.1% of parameters. Instead of tuning 7B params, add two small matrices A (7B×8) and B (8×out), train only those. Result: 10x cheaper, same quality.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>LoRA Mathematics:</b> Low-rank decomposition of weight updates<br>
+        ★ <b>QLoRA:</b> Quantization + LoRA (4-bit quantization + LoRA)<br>
+        ★ <b>Efficiency:</b> Train on single GPU instead of 8<br>
+        ★ <b>Merging:</b> Merge LoRA weights back into base model
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Low-rank assumption:</b> Weight updates lie in low-dimensional space<br>
+        › <b>Matrices A, B:</b> 7B×rank (usually rank=8), rank×out<br>
+        › <b>Rank selection:</b> rank=4 for efficiency, rank=16+ for quality<br>
+        › <b>QLoRA:</b> Quantize base model to 4-bit NF4, add LoRA<br>
+        › <b>PEFT library:</b> AutoPEFTModelForCausalLM, LoraConfig<br>
+        › <b>Memory:</b> 7B model (28GB FP32) → 7B int4 (2GB) + LoRA (64MB)<br>
+        › <b>Speed:</b> Training 1.5-2x slower than inference<br>
+        › <b>Merging:</b> Option to keep separate (adapter) or merge (single file)
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>LoRA Training Setup</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showLoRA()">Show LoRA Example</button>
+      <div id="lora-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">PEFT</span>
+      <span class="tag green">TRL</span>
+      <span class="tag amber">Unsloth</span>
+      <span class="tag purple">BitsAndBytes</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>LoRA fine-tune Llama 3.1 8B on custom instructions:</b> Use PEFT to add LoRA adapters. Train on 500 custom instruction-output pairs. Measure quality vs full fine-tuning cost.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 22: Dataset Curation -->
+<div class="topic" id="t22">
+  <span class="topic-section-label">D6 — Fine-tuning + PEFT</span>
+  <div class="topic-header">
+    <h2>Dataset Curation for Fine-tuning</h2>
+    <p>Fine-tuning quality depends 90% on data. Collect 100-1000 diverse examples: instruction-output pairs. Clean, deduplicate, validate. Bad data = bad model.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Data Collection:</b> Get instruction-output pairs<br>
+        ★ <b>Cleaning:</b> Remove duplicates, fix formatting<br>
+        ★ <b>Validation:</b> Ensure outputs are correct<br>
+        ★ <b>Diversification:</b> Cover multiple topics/tones
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Data formats:</b> Alpaca (text), ChatML (conversations), ShareGPT (multi-turn)<br>
+        › <b>Minimum data:</b> 100 examples per use case<br>
+        › <b>Ideal data:</b> 500-1000 examples, diverse scenarios<br>
+        › <b>Cleaning:</b> Remove near-duplicates (>90% similarity), fix encoding<br>
+        › <b>Quality:</b> Have human review 10% of data for correctness<br>
+        › <b>Diversity:</b> Cover different question types, tones, domains<br>
+        › <b>Labeling:</b> Either human-labeled or synthetic (GPT-4 generated)<br>
+        › <b>Cost:</b> Human labeling ~$0.50-2.00 per example
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Data Pipeline</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showDataPipeline()">Show Curation Pipeline</button>
+      <div id="data-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">HF Datasets</span>
+      <span class="tag green">Label Studio</span>
+      <span class="tag amber">Data-Juicer</span>
+      <span class="tag purple">Argilla</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Collect 500 customer support Q&A pairs:</b> Extract from past tickets. Clean, deduplicate, validate. Ensure diversity across topics. Prepare for fine-tuning.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 23: Fine-tuning vs Prompting -->
+<div class="topic" id="t23">
+  <span class="topic-section-label">D6 — Fine-tuning + PEFT</span>
+  <div class="topic-header">
+    <h2>Fine-tuning vs Prompting Decision Matrix</h2>
+    <p>When you have domain data, should you fine-tune or use a better prompt? Decision tree based on knowledge stability, data amount, latency, and cost.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Fine-tune:</b> Stable knowledge, high volume (100K+ queries)<br>
+        ★ <b>Prompting:</b> Changing knowledge, low volume, need explanations<br>
+        ★ <b>Hybrid:</b> Fine-tune base + in-context examples for extreme quality
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Fine-tune if:</b> Knowledge rarely changes (legal docs, technical specs)<br>
+        › <b>Prompting if:</b> Knowledge changes weekly, need citations<br>
+        › <b>Hybrid if:</b> Zero-tolerance for errors + knowledge changes<br>
+        › <b>Cost analysis:</b> 1M queries/month → FT ~$100-500/month, Prompting ~$1000/month<br>
+        › <b>Latency:</b> FT ~300ms inference, Prompting ~1-2s (waiting for LLM)<br>
+        › <b>Data requirements:</b> FT needs 100 examples, Prompting needs 0<br>
+        › <b>Eval on your data:</b> Benchmark both approaches<br>
+        › <b>Time-to-market:</b> Prompting ~1 day, FT ~1 week<br>
+        › <b>Maintenance:</b> FT requires retraining if data shifts, Prompting needs re-prompting
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Decision Framework</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showFTDecision()">Show Decision Matrix</button>
+      <div id="ft-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">OpenCompass</span>
+      <span class="tag green">Lmsys</span>
+      <span class="tag amber">W&B</span>
+      <span class="tag purple">MLFlow</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build decision tree for your use case:</b> Assess your data (stability, volume, freshness). Benchmark prompting vs fine-tuning on sample queries. Document cost/latency tradeoffs.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 24: Multi-Agent RAG Capstone -->
+<div class="topic" id="t24">
+  <span class="topic-section-label">D7 — Week 2 Project</span>
+  <div class="topic-header">
+    <h2>Multi-Agent RAG System Capstone</h2>
+    <p>Build a production-grade multi-agent RAG system combining all previous week's learnings. Orchestrate specialized agents (retrieval, reasoning, generation), evaluate with RAGAS, deploy with monitoring.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Orchestrator Agent:</b> Routes queries to specialists<br>
+        ★ <b>Retrieval Agent:</b> Fetches docs with multi-query + reranking<br>
+        ★ <b>Reasoning Agent:</b> Analyzes docs, identifies gaps<br>
+        ★ <b>Generation Agent:</b> Writes answer with citations
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Architecture:</b> 4 agents + supervisor, shared context<br>
+        › <b>Retrieval:</b> Vector search + BM25 + Reranking<br>
+        › <b>Reasoning:</b> Self-reflect, request more docs if needed<br>
+        › <b>Generation:</b> Answer + citations + confidence score<br>
+        › <b>Evaluation:</b> RAGAS metrics on 50+ test questions<br>
+        › <b>Deployment:</b> FastAPI endpoint, logging, monitoring<br>
+        › <b>Scaling:</b> Handle 100 concurrent queries<br>
+        › <b>Cost tracking:</b> Log tokens/cost per query<br>
+        › <b>Explainability:</b> Trace which agent made which decision
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Workflow Architecture</h3></div>
+    <div class="card-body">
+      <div class="step-visual">
+        <div class="step-row"><span class="s-num">1</span><span class="s-text"><b>User Question</b> → Orchestrator decides: Needs retrieval?</span></div>
+        <div class="step-row"><span class="s-num">2</span><span class="s-text"><b>Retrieval Agent</b> → Multi-query + vector + BM25 + rerank → Top 5 docs</span></div>
+        <div class="step-row"><span class="s-num">3</span><span class="s-text"><b>Reasoning Agent</b> → Analyze gaps, request more if needed</span></div>
+        <div class="step-row"><span class="s-num">4</span><span class="s-text"><b>Generation Agent</b> → Write answer with inline citations</span></div>
+        <div class="step-row"><span class="s-num">5</span><span class="s-text"><b>Quality Check</b> → Faithfulness > 0.7, answer relevance > 0.8?</span></div>
+        <div class="step-row"><span class="s-num">6</span><span class="s-text"><b>Return</b> → Answer + Sources + Confidence + Latency</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Success Criteria</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ✓ <b>Correctness:</b> Answer 50+ diverse questions correctly<br>
+        ✓ <b>Faithfulness:</b> RAGAS faithfulness > 0.85<br>
+        ✓ <b>Performance:</b> p95 latency < 2 seconds<br>
+        ✓ <b>Cost:</b> Cost < $0.05 per query<br>
+        ✓ <b>Explainability:</b> Full tracing of agent decisions
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">LangGraph</span>
+      <span class="tag green">LangChain</span>
+      <span class="tag amber">RAGAS</span>
+      <span class="tag purple">FastAPI</span>
+      <span class="tag cyan">Docker</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project Deliverables</h3></div>
+    <div class="card-body">
+      <b>1. Multi-agent system:</b> 4 specialized agents + orchestrator with LangGraph<br>
+      <b>2. Evaluation:</b> RAGAS metrics > 0.8 on 50 test questions<br>
+      <b>3. API endpoint:</b> /answer endpoint returning answer + sources + confidence<br>
+      <b>4. Monitoring:</b> Dashboard showing latency, cost, accuracy metrics<br>
+      <b>5. Documentation:</b> Architecture diagram, deployment guide, prompt engineering notes
+    </div>
+  </div>
+</div>
+
+<!-- Topic 25: ColBERT — Late Interaction -->
+<div class="topic" id="t25">
+  <span class="topic-section-label">D1 — Embeddings + Vector Databases</span>
+  <div class="topic-header">
+    <h2>ColBERT — Late Interaction Retrieval</h2>
+    <p>Single-vector embeddings (BERT) compress an entire document into one vector — losing detail. ColBERT keeps one vector per token and matches them late at query time. Result: dramatically better precision on multi-word queries.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Single-vector (BERT):</b> 1 doc = 1 vector (768 floats)<br>
+        ★ <b>Multi-vector (ColBERT):</b> 1 doc = N vectors (1 per token)<br>
+        ★ <b>MaxSim operator:</b> For each query token, find max-similarity doc token<br>
+        ★ <b>Late interaction:</b> Match at query time, not encode time
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Standard BERT pooling:</b> Mean/CLS pooling kills word-level detail<br>
+        › <b>ColBERT v1:</b> Stores all token vectors per doc (~100KB/doc)<br>
+        › <b>ColBERT v2:</b> Centroid + residual quantization (~10KB/doc)<br>
+        › <b>MaxSim:</b> sum_q max_d cos(q_i, d_j) — every query word finds best doc word<br>
+        › <b>Storage cost:</b> 100x larger than single-vector (mitigated in v2)<br>
+        › <b>Quality gain:</b> +5-15% nDCG over BERT on retrieval benchmarks<br>
+        › <b>Tools:</b> RAGatouille (Python), ColBERTv2 checkpoint<br>
+        › <b>Use when:</b> Long technical queries, exact phrase matters
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>BERT vs ColBERT — interactive</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showColBERT()">Compare on "neural search engine"</button>
+      <div id="colbert-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">RAGatouille</span>
+      <span class="tag green">ColBERTv2</span>
+      <span class="tag amber">Vespa</span>
+      <span class="tag purple">PLAID</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Benchmark BERT vs ColBERT on BEIR:</b> Index 100K docs both ways. Run 50 test queries. Compare nDCG@10 and storage cost.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 26: pgvector + FAISS -->
+<div class="topic" id="t26">
+  <span class="topic-section-label">D1 — Embeddings + Vector Databases</span>
+  <div class="topic-header">
+    <h2>pgvector + FAISS — Embedded Vector Search</h2>
+    <p>Don't always need a managed vector DB. pgvector adds vector search to PostgreSQL (use your existing DB). FAISS is Facebook's library for blazing-fast in-memory vector search. Both keep you off the SaaS bill.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>pgvector:</b> Postgres extension — vector column type + ANN index<br>
+        ★ <b>FAISS:</b> In-memory C++ library with Python bindings<br>
+        ★ <b>HNSW vs IVF:</b> FAISS supports both index types<br>
+        ★ <b>When to choose each:</b> Postgres infra → pgvector, ML pipeline → FAISS
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>pgvector setup:</b> CREATE EXTENSION vector; CREATE INDEX USING hnsw;<br>
+        › <b>pgvector ops:</b> &lt;-&gt; (L2), &lt;#&gt; (negative dot), &lt;=&gt; (cosine)<br>
+        › <b>pgvector scale:</b> ~10M vectors comfortably, joins with SQL data<br>
+        › <b>FAISS index types:</b> Flat (exact), IVF (clustered), HNSW (graph), PQ (compressed)<br>
+        › <b>FAISS GPU:</b> 10-100x speedup with CUDA<br>
+        › <b>Persistence:</b> faiss.write_index(idx, "file.faiss")<br>
+        › <b>Hybrid:</b> FAISS in memory + Postgres for metadata
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Compare pgvector vs FAISS</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showPgFaiss()">See comparison</button>
+      <div id="pgf-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">pgvector</span>
+      <span class="tag green">FAISS</span>
+      <span class="tag amber">Supabase</span>
+      <span class="tag purple">SQLAlchemy</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build self-hosted RAG:</b> Index 1M docs in pgvector. Run benchmarks vs FAISS. Add SQL metadata join (e.g., "find docs by user X with similar topic to Y").
+    </div>
+  </div>
+</div>
+
+<!-- Topic 27: Metadata Filtering -->
+<div class="topic" id="t27">
+  <span class="topic-section-label">D1 — Embeddings + Vector Databases</span>
+  <div class="topic-header">
+    <h2>Metadata Filtering for Vector Search</h2>
+    <p>Pure vector search returns "topically similar" — but you also need filters: "from this user", "after 2024", "in English". Metadata filtering lets you narrow results before or after vector matching.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Pre-filtering:</b> Filter first, then search the subset<br>
+        ★ <b>Post-filtering:</b> Search top-K, then filter (loses recall)<br>
+        ★ <b>Inline filtering:</b> Filter and search in single index walk<br>
+        ★ <b>Filter cardinality:</b> Highly-selective filters need pre-filter
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Metadata schema:</b> {user_id, date, lang, doc_type, tags[]}<br>
+        › <b>Pre-filter pitfall:</b> If filter selects 0.001% of corpus, HNSW may miss neighbors<br>
+        › <b>Post-filter pitfall:</b> Top-100 may have 0 matches after filter<br>
+        › <b>Qdrant:</b> Payload index + filtered HNSW — best filter perf<br>
+        › <b>Pinecone:</b> Metadata filters with AND/OR/IN/NOT<br>
+        › <b>Weaviate:</b> GraphQL where{} clauses<br>
+        › <b>pgvector:</b> Standard SQL WHERE — most flexible<br>
+        › <b>Best practice:</b> Index high-cardinality fields, keep payload small
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Try filtering</h3></div>
+    <div class="card-body">
+      <div class="interactive">
+        <label>Filter</label>
+        <select id="mf-filter">
+          <option value="all">No filter (all docs)</option>
+          <option value="recent">Recent only (date > 2024)</option>
+          <option value="lang">English only</option>
+          <option value="combined">Recent + English</option>
+        </select>
+        <button class="btn" onclick="runMetaFilter()">Apply Filter</button>
+        <div id="mf-out" class="output" style="min-height:150px"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">Qdrant</span>
+      <span class="tag green">Pinecone</span>
+      <span class="tag amber">Weaviate</span>
+      <span class="tag purple">pgvector</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Multi-tenant RAG:</b> Index docs from 100 users, ensure user_id filter prevents cross-tenant leaks. Benchmark filtered vs unfiltered query latency.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 28: Document Processing Pipeline -->
+<div class="topic" id="t28">
+  <span class="topic-section-label">D2 — RAG Pipelines</span>
+  <div class="topic-header">
+    <h2>Document Processing Pipeline</h2>
+    <p>Real RAG starts with messy data: PDFs, HTML, tables, scanned images. Stage 0 of every pipeline: parse, normalize, chunk, embed, index. Get this wrong and the rest of the pipeline can't recover.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Loading:</b> PDF, DOCX, HTML, Markdown, JSON<br>
+        ★ <b>Parsing:</b> Extract text + structure (headings, tables, lists)<br>
+        ★ <b>Cleaning:</b> Remove footers, page numbers, HTML noise<br>
+        ★ <b>Chunking:</b> Split with structure awareness<br>
+        ★ <b>Embedding & Indexing:</b> Vectorize and store
+    </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>PDF parsers:</b> PyPDF (basic), pdfplumber (tables), unstructured.io (best)<br>
+        › <b>OCR for scans:</b> Tesseract (free), AWS Textract, Google Vision<br>
+        › <b>Table handling:</b> Convert to Markdown table or JSON, preserve structure<br>
+        › <b>Image extraction:</b> Caption with vision LLM, store alongside text<br>
+        › <b>Section detection:</b> Use heading hierarchy for parent-child chunks<br>
+        › <b>Metadata enrichment:</b> Author, date, doc type, source URL<br>
+        › <b>Idempotency:</b> Re-processing same doc shouldn't duplicate chunks<br>
+        › <b>Pipeline tools:</b> LangChain Loaders, LlamaParse, Unstructured.io
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>5-stage pipeline visual</h3></div>
+    <div class="card-body">
+      <div class="step-visual">
+        <div class="step-row"><span class="s-num">1</span><span class="s-text"><b>Load:</b> PDF / DOCX / HTML → raw bytes</span></div>
+        <div class="step-row"><span class="s-num">2</span><span class="s-text"><b>Parse:</b> Extract text, tables, images, structure</span></div>
+        <div class="step-row"><span class="s-num">3</span><span class="s-text"><b>Chunk:</b> Recursive split with metadata</span></div>
+        <div class="step-row"><span class="s-num">4</span><span class="s-text"><b>Embed:</b> Batch through embedding model</span></div>
+        <div class="step-row"><span class="s-num">5</span><span class="s-text"><b>Index:</b> Upsert to vector DB with metadata</span></div>
+      </div>
+      <button class="btn" onclick="showDocPipeline()" style="margin-top:14px">Run Sample Pipeline</button>
+      <div id="docp-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">unstructured.io</span>
+      <span class="tag green">LlamaParse</span>
+      <span class="tag amber">pdfplumber</span>
+      <span class="tag purple">Tesseract</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build doc pipeline for mixed corpus:</b> 50 PDFs (some scanned), 100 HTML pages, 20 DOCX. Single pipeline → vector DB. Verify table data is searchable.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 29: Reranking -->
+<div class="topic" id="t29">
+  <span class="topic-section-label">D2 — RAG Pipelines</span>
+  <div class="topic-header">
+    <h2>Reranking — Cross-Encoders, Cohere, BGE</h2>
+    <p>Bi-encoders (your embedder) are fast but rough. Cross-encoders read the query AND each doc together — much more accurate. Use them as a 2nd-stage rerank: retrieve 100 with vector search, rerank to top 10 with cross-encoder.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Bi-encoder:</b> Embed query + doc separately, cosine similarity<br>
+        ★ <b>Cross-encoder:</b> Encode (query, doc) pair together → relevance score<br>
+        ★ <b>Cohere Rerank:</b> Hosted API, multilingual, very strong<br>
+        ★ <b>BGE Reranker:</b> Open-source, runs locally, free<br>
+        ★ <b>Two-stage:</b> Retrieve 100 fast, rerank to 10 carefully
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Why rerank works:</b> Cross-attention sees full query↔doc interactions<br>
+        › <b>Latency:</b> ~5-50ms per (query,doc) pair → 500ms for 100 docs<br>
+        › <b>Top-k tuning:</b> Retrieve 50-200, rerank to 5-20<br>
+        › <b>Cohere Rerank v3:</b> $1/1000 searches, 100 docs/call<br>
+        › <b>BGE-reranker-large:</b> 560M params, GPU recommended<br>
+        › <b>ms-marco-MiniLM:</b> 22M params, runs on CPU<br>
+        › <b>Quality lift:</b> +10-25% nDCG@10 typical<br>
+        › <b>Combine:</b> Hybrid retrieval → rerank → filter by score threshold
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>See reranking in action</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showReranking()">Show before/after rerank</button>
+      <div id="rerank-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">Cohere Rerank</span>
+      <span class="tag green">BGE Reranker</span>
+      <span class="tag amber">Jina Reranker</span>
+      <span class="tag purple">sentence-transformers</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Add reranking to your RAG:</b> Retrieve top 50 with vector, rerank to top 10 with BGE. Measure nDCG@10 lift. Tune k_retrieve and k_rerank.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 30: Contextual Compression -->
+<div class="topic" id="t30">
+  <span class="topic-section-label">D2 — RAG Pipelines</span>
+  <div class="topic-header">
+    <h2>Contextual Compression & Context Window Management</h2>
+    <p>Retrieved docs are noisy — most sentences are irrelevant to the query. Compression keeps only relevant parts → less context → cheaper and more accurate. Combined with smart context window management, fits more signal in the same prompt.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>LLM-based filter:</b> "Is this sentence relevant to query?" → keep/drop<br>
+        ★ <b>Embedding filter:</b> Drop sentences with cosine &lt; threshold<br>
+        ★ <b>LLMLingua:</b> Token-level pruning model<br>
+        ★ <b>Context ordering:</b> "Lost in the middle" — put key docs at start/end
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Why compress:</b> Cuts tokens 50-80%, costs drop, quality often improves<br>
+        › <b>LLMChainExtractor:</b> Per-doc, ask LLM to extract relevant text<br>
+        › <b>EmbeddingsFilter:</b> Cheap, drops irrelevant docs entirely<br>
+        › <b>LLMLingua:</b> Specialized small model — 20x compression<br>
+        › <b>Lost-in-the-middle:</b> LLMs ignore middle of long context<br>
+        › <b>Reordering:</b> Place top-1 first, top-2 last, fillers in middle<br>
+        › <b>Context window:</b> Reserve 2000 tokens for output, use rest for context<br>
+        › <b>Token budget:</b> Prompt + history + retrieval ≤ window − reserved
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Compression demo</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showCompression()">Run compression</button>
+      <div id="comp-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">LangChain Compressor</span>
+      <span class="tag green">LLMLingua</span>
+      <span class="tag amber">Selective Context</span>
+      <span class="tag purple">tiktoken</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Add compression to RAG:</b> Apply LLMChainExtractor, measure token reduction & RAGAS faithfulness. Compare to no-compression baseline.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 31: LangChain vs LlamaIndex -->
+<div class="topic" id="t31">
+  <span class="topic-section-label">D2 — RAG Pipelines</span>
+  <div class="topic-header">
+    <h2>LangChain vs LlamaIndex</h2>
+    <p>The two dominant RAG frameworks. LangChain is a general orchestration toolkit (chains, agents, anything LLM). LlamaIndex is laser-focused on data ingestion and retrieval. Pick by where your complexity lives.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>LangChain:</b> Chains, agents, broad tool ecosystem, LangGraph for state<br>
+        ★ <b>LlamaIndex:</b> Data connectors, query engines, smart indexing<br>
+        ★ <b>Overlap:</b> Both do RAG — pick one as primary<br>
+        ★ <b>Interop:</b> Use them together (LlamaIndex retriever inside LangChain chain)
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>LangChain abstractions:</b> Runnables, Chains, Agents, Tools, Memory<br>
+        › <b>LangChain RAG:</b> Retriever + LLM in a Chain (LCEL)<br>
+        › <b>LlamaIndex abstractions:</b> Documents, Nodes, Indexes, QueryEngines<br>
+        › <b>LlamaIndex strengths:</b> 200+ data loaders, sub-question, router, sub-doc<br>
+        › <b>LangChain strengths:</b> Agents, multi-step workflows, integrations<br>
+        › <b>When LangChain:</b> Building agentic apps with tools<br>
+        › <b>When LlamaIndex:</b> Pure RAG over diverse data sources<br>
+        › <b>LangSmith vs LlamaTrace:</b> Both observe — LangSmith more mature
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Code comparison</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showLcLi()">Same RAG in both</button>
+      <div id="lcli-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">LangChain</span>
+      <span class="tag green">LlamaIndex</span>
+      <span class="tag amber">LangSmith</span>
+      <span class="tag purple">LCEL</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build same RAG in both:</b> Same corpus, same eval set. Compare lines of code, latency, accuracy. Pick winner for your style.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 32: OpenAI Assistants API -->
+<div class="topic" id="t32">
+  <span class="topic-section-label">D2 — RAG Pipelines</span>
+  <div class="topic-header">
+    <h2>OpenAI Assistants API — Managed RAG</h2>
+    <p>Don't want to run your own RAG stack? OpenAI's Assistants API hides everything: file upload → automatic chunking → embedding → retrieval. Trade flexibility for zero-ops.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>File Search tool:</b> Upload PDFs, OpenAI handles RAG<br>
+        ★ <b>Code Interpreter:</b> Sandboxed Python execution<br>
+        ★ <b>Threads:</b> Persistent conversation state<br>
+        ★ <b>Vector Stores:</b> Managed vector DB you don't see
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Setup:</b> client.beta.assistants.create(tools=[{"type":"file_search"}])<br>
+        › <b>Vector Store:</b> Up to 10k files, 512MB each<br>
+        › <b>Chunking:</b> Default 800 tokens, 400 overlap (configurable)<br>
+        › <b>Citations:</b> Returned with file_id and quote<br>
+        › <b>Cost:</b> $0.10/GB/day storage + token costs<br>
+        › <b>Limitations:</b> No control over embedding model or retrieval algo<br>
+        › <b>When to use:</b> Prototype fast, low/medium volume, OK with vendor lock-in<br>
+        › <b>When NOT:</b> Need custom rerankers, hybrid search, on-prem
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Assistants API flow</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showAssistants()">Show end-to-end</button>
+      <div id="asst-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">OpenAI SDK</span>
+      <span class="tag green">Assistants API</span>
+      <span class="tag amber">File Search</span>
+      <span class="tag purple">Threads</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Compare DIY vs Assistants:</b> Same 100 PDFs in your custom RAG and Assistants API. Compare quality (RAGAS), cost, dev time.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 33: RAG Failure Modes -->
+<div class="topic" id="t33">
+  <span class="topic-section-label">D2 — RAG Pipelines</span>
+  <div class="topic-header">
+    <h2>RAG Failure Modes & Debugging</h2>
+    <p>Your RAG returned a wrong answer. Where did it fail? Bad retrieval? Bad chunking? LLM ignored context? Hallucinated over context? Each failure mode has a different fix — diagnosis comes first.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Retrieval miss:</b> Right doc never returned<br>
+        ★ <b>Chunk boundary:</b> Answer split across chunks<br>
+        ★ <b>Hallucination over context:</b> LLM ignores docs<br>
+        ★ <b>Context overflow:</b> Too many docs, signal lost<br>
+        ★ <b>Stale data:</b> Index outdated
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Diagnose retrieval:</b> Did the gold doc appear in top-K? If no → retrieval problem<br>
+        › <b>Fix retrieval:</b> Better embedding model, hybrid search, query rewriting<br>
+        › <b>Diagnose chunking:</b> Is the answer in any chunk? Or split across two?<br>
+        › <b>Fix chunking:</b> Increase chunk size, increase overlap, parent-child<br>
+        › <b>Diagnose hallucination:</b> RAGAS faithfulness &lt; 0.7?<br>
+        › <b>Fix hallucination:</b> Stronger system prompt, citation forcing, NLI check<br>
+        › <b>Diagnose context overflow:</b> Top-1 doc has answer but LLM picks wrong info<br>
+        › <b>Fix overflow:</b> Reduce K, rerank, contextual compression
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Failure-mode diagnoser</h3></div>
+    <div class="card-body">
+      <div class="interactive">
+        <label>Symptom</label>
+        <select id="fm-symptom">
+          <option value="wrong">Answer is wrong / made up</option>
+          <option value="incomplete">Answer is partial / cut off</option>
+          <option value="stale">Answer is outdated</option>
+          <option value="off-topic">Answer is unrelated to question</option>
+        </select>
+        <button class="btn" onclick="diagnoseFailure()">Diagnose</button>
+        <div id="fm-out" class="output" style="min-height:150px"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">LangSmith</span>
+      <span class="tag green">RAGAS</span>
+      <span class="tag amber">TruLens</span>
+      <span class="tag purple">Phoenix</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Failure analysis:</b> Take 50 wrong answers, classify each by failure mode. Build dashboard. Prioritize fixes by failure-mode frequency.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 34: ReAct Pattern -->
+<div class="topic" id="t34">
+  <span class="topic-section-label">D3 — Advanced RAG + Evaluation</span>
+  <div class="topic-header">
+    <h2>ReAct — Reasoning + Acting</h2>
+    <p>Pure chain-of-thought is just thought. ReAct interleaves Thought → Action → Observation loops, so the agent can call tools and learn from results — like a human researching, not just imagining.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Thought:</b> "I need to search for X"<br>
+        ★ <b>Action:</b> search("X")<br>
+        ★ <b>Observation:</b> Tool result returned<br>
+        ★ <b>Loop:</b> Reason about observation → next action<br>
+        ★ <b>Termination:</b> Final answer when confident
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Origin:</b> "ReAct: Synergizing Reasoning and Acting" (Yao et al. 2022)<br>
+        › <b>Format:</b> Thought / Action / Observation triples in transcript<br>
+        › <b>Tool calls:</b> Search, Lookup, Calculator, Code, etc.<br>
+        › <b>Stop condition:</b> Action: Finish[answer]<br>
+        › <b>Failure modes:</b> Loops, repeated actions, tool error spirals<br>
+        › <b>Mitigations:</b> Max steps cap, deduplicated tool calls, scratchpad memory<br>
+        › <b>vs Chain-of-thought:</b> CoT no tools, ReAct grounded in observations<br>
+        › <b>vs Plan-and-execute:</b> Plan-first vs interleaved
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>ReAct trace example</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showReAct()">Run ReAct example</button>
+      <div id="react-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">LangChain Agents</span>
+      <span class="tag green">LangGraph</span>
+      <span class="tag amber">DSPy</span>
+      <span class="tag purple">Llama Agents</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build ReAct agent:</b> 3 tools (search, calc, code). Solve 20 multi-step questions. Trace every Thought/Action/Observation. Find failure patterns.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 35: MRKL Systems -->
+<div class="topic" id="t35">
+  <span class="topic-section-label">D3 — Advanced RAG + Evaluation</span>
+  <div class="topic-header">
+    <h2>MRKL — Modular Reasoning, Knowledge, Language</h2>
+    <p>"Mr Kel" — pronounced "miracle". A neuro-symbolic architecture: an LLM router dispatches sub-tasks to specialized expert modules (math solver, SQL engine, calculator). Best tool for each subproblem.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Router LLM:</b> Decides which expert handles which sub-task<br>
+        ★ <b>Expert modules:</b> Calculator, SQL, Wolfram, code, retrieval<br>
+        ★ <b>Symbolic + neural:</b> Reliable for math/SQL, flexible for NL<br>
+        ★ <b>Composable:</b> Mix and match modules per app
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Origin:</b> AI21 Labs (Karpas et al. 2022)<br>
+        › <b>Why:</b> LLMs are bad at exact arithmetic, current facts, rare languages<br>
+        › <b>Module types:</b> Calculator, Wolfram Alpha, SQL, weather API, RAG retriever<br>
+        › <b>Routing prompt:</b> Few-shot showing which module fits which question<br>
+        › <b>vs ReAct:</b> ReAct is general, MRKL emphasizes symbolic experts<br>
+        › <b>vs single-agent tools:</b> MRKL formalizes router/expert split<br>
+        › <b>Modern equivalent:</b> Function calling + system prompt routing<br>
+        › <b>Reliability:</b> Eliminates LLM math errors entirely
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>MRKL flow</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showMRKL()">Run MRKL example</button>
+      <div id="mrkl-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">LangChain</span>
+      <span class="tag green">Wolfram Alpha</span>
+      <span class="tag amber">SQL agents</span>
+      <span class="tag purple">Toolformer</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build a MRKL router:</b> 4 experts (math, SQL, RAG, weather). Test 30 mixed questions. Measure routing accuracy and end-to-end correctness.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 36: Planning & Decomposition -->
+<div class="topic" id="t36">
+  <span class="topic-section-label">D3 — Advanced RAG + Evaluation</span>
+  <div class="topic-header">
+    <h2>Planning & Task Decomposition</h2>
+    <p>Complex tasks need a plan, not just reactions. Break a goal into ordered subtasks, execute, monitor — and re-plan if reality diverges. This is what separates an agent from a Q&A bot.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Decomposition:</b> Goal → ordered subtasks<br>
+        ★ <b>Plan-and-Execute:</b> Plan first, then execute step by step<br>
+        ★ <b>Re-planning:</b> Subtask failed → revise remaining plan<br>
+        ★ <b>Goal-directed:</b> Always trace back to top-level goal
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Plan-and-Execute (LangChain):</b> Planner LLM → Executor agent loop<br>
+        › <b>HuggingGPT pattern:</b> Plan tasks → assign expert models → aggregate<br>
+        › <b>Tree-of-Thoughts:</b> Branch alternative plans, evaluate, prune<br>
+        › <b>Self-Ask:</b> Decompose into sub-questions, answer in order<br>
+        › <b>Re-planning triggers:</b> Tool error, observation contradicts plan, new info<br>
+        › <b>Plan format:</b> Numbered list, DAG, or graph<br>
+        › <b>Plan validation:</b> LLM-judge or rule-based plan critic<br>
+        › <b>Termination:</b> All subtasks done OR cost budget exceeded
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Decomposition example</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showPlanning()">Decompose a goal</button>
+      <div id="plan-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">LangGraph</span>
+      <span class="tag green">Plan-and-Execute</span>
+      <span class="tag amber">Tree-of-Thoughts</span>
+      <span class="tag purple">Self-Ask</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build a planner agent:</b> Take "research X and write a 500-word report". Decompose, execute, re-plan on failures. Compare to single-shot baseline.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 37: CrewAI -->
+<div class="topic" id="t37">
+  <span class="topic-section-label">D4 — AI Agents — Architecture</span>
+  <div class="topic-header">
+    <h2>CrewAI — Role-Based Multi-Agent Framework</h2>
+    <p>CrewAI gives each agent a Role, Goal, and Backstory — like assembling a team. Agents collaborate via Tasks and a Process (sequential or hierarchical). Perfect for "researcher → writer → editor" workflows.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Agent:</b> role + goal + backstory + tools<br>
+        ★ <b>Task:</b> Description + expected_output, assigned to agent<br>
+        ★ <b>Crew:</b> Group of agents + tasks + process<br>
+        ★ <b>Process:</b> Sequential (linear) or hierarchical (manager delegates)
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Role-based design:</b> "Senior Research Analyst" persona shapes outputs<br>
+        › <b>Sequential:</b> A's output is B's input, B's output is C's input<br>
+        › <b>Hierarchical:</b> Manager agent delegates and reviews<br>
+        › <b>Tool sharing:</b> Multiple agents can use same tools<br>
+        › <b>Memory:</b> Short-term per task, long-term across crews<br>
+        › <b>Strengths:</b> Quick to author, readable code, good for content workflows<br>
+        › <b>Weaknesses:</b> Less control vs LangGraph, fewer integrations<br>
+        › <b>vs LangGraph:</b> CrewAI = high-level patterns, LangGraph = low-level state graph
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>CrewAI example</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showCrewAI()">Show research crew</button>
+      <div id="crew-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">CrewAI</span>
+      <span class="tag green">CrewAI Tools</span>
+      <span class="tag amber">SerperDev</span>
+      <span class="tag purple">Agentops</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build content crew:</b> Researcher + Writer + Editor agents. Generate 5 blog posts. Compare quality vs single-LLM baseline.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 38: PydanticAI + Human-in-the-loop -->
+<div class="topic" id="t38">
+  <span class="topic-section-label">D4 — AI Agents — Architecture</span>
+  <div class="topic-header">
+    <h2>PydanticAI + Human-in-the-Loop</h2>
+    <p>PydanticAI gives agents type-safe tool calls and structured outputs — same Pydantic models you already use for FastAPI. Plus: HITL gates that pause execution for approval before high-stakes actions.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Type-safe tools:</b> Function signatures define tool schema<br>
+        ★ <b>Structured outputs:</b> Agent must return valid Pydantic model<br>
+        ★ <b>Dependency injection:</b> Pass DB, services into agent context<br>
+        ★ <b>HITL approval:</b> Pause before commit / send / pay
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>PydanticAI core:</b> Agent[Deps, ResultType] generic class<br>
+        › <b>@agent.tool:</b> Decorator turns Python function into LLM tool<br>
+        › <b>Validation:</b> Pydantic enforces tool params and final result schema<br>
+        › <b>Streaming:</b> Streaming structured outputs (partial models)<br>
+        › <b>HITL patterns:</b> Pause before tool call, return for approval, resume<br>
+        › <b>Approval gates:</b> "About to delete 1000 records — proceed?"<br>
+        › <b>Clarification:</b> Agent asks user for missing info mid-task<br>
+        › <b>Audit trail:</b> Log every tool call + approval decision
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>HITL flow</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showHITL()">Show approval gate</button>
+      <div id="hitl-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">PydanticAI</span>
+      <span class="tag green">Pydantic</span>
+      <span class="tag amber">FastAPI</span>
+      <span class="tag purple">LangGraph HITL</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Build email-sending agent with HITL:</b> Drafts replies, requires human approval before send. Type-safe with PydanticAI. Log all decisions.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 39: MCP Transports + OAuth -->
+<div class="topic" id="t39">
+  <span class="topic-section-label">D5 — MCP + A2A Protocols</span>
+  <div class="topic-header">
+    <h2>MCP Transports — stdio vs Streamable HTTP + OAuth</h2>
+    <p>MCP runs over two transports: stdio (local subprocess, simple) and Streamable HTTP (remote, scalable). Production servers use HTTP with OAuth 2.0 for auth. Pick by deployment model.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>stdio transport:</b> Subprocess + JSON-RPC over stdin/stdout<br>
+        ★ <b>Streamable HTTP:</b> POST + SSE response stream<br>
+        ★ <b>OAuth 2.0:</b> Authorization Code + PKCE for HTTP servers<br>
+        ★ <b>Sessions:</b> Mcp-Session-Id header for stateful connections
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>stdio pros:</b> Simple, no network, works for desktop tools<br>
+        › <b>stdio cons:</b> Local only, one client per server process<br>
+        › <b>Streamable HTTP:</b> Single endpoint, POST request → SSE response<br>
+        › <b>HTTP pros:</b> Multi-client, deploy anywhere, supports auth<br>
+        › <b>OAuth flow:</b> Discovery → register → authorize → token → API call<br>
+        › <b>PKCE:</b> Required for native/CLI clients (no client secret)<br>
+        › <b>Resource Indicator:</b> RFC 8707 — token bound to specific MCP server<br>
+        › <b>Token rotation:</b> Refresh tokens, short-lived access tokens
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Transport comparison</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showMCPTransport()">Compare transports</button>
+      <div id="mcpt-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">MCP SDK (Python)</span>
+      <span class="tag green">FastAPI</span>
+      <span class="tag amber">authlib</span>
+      <span class="tag purple">PKCE</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Deploy HTTP MCP server:</b> Add OAuth (Authorization Code + PKCE). Expose 2 tools. Test from Claude Desktop and a custom client.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 40: MCP Registry -->
+<div class="topic" id="t40">
+  <span class="topic-section-label">D5 — MCP + A2A Protocols</span>
+  <div class="topic-header">
+    <h2>MCP Registry — Server Discovery</h2>
+    <p>How does Claude find a "GitHub MCP server" or a "Postgres MCP server"? The MCP Registry is a public catalog of servers — like npm for MCP. Publish, discover, install.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Public Registry:</b> Browse community servers<br>
+        ★ <b>Server metadata:</b> Name, description, tools, install command<br>
+        ★ <b>Versioning:</b> Semver, declare runtime requirements<br>
+        ★ <b>Trust:</b> Verified publishers, signature checks
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Discovery:</b> Search by capability ("filesystem", "git", "database")<br>
+        › <b>Manifest:</b> server.json with name, version, transports, capabilities<br>
+        › <b>Install methods:</b> npm, uvx, pipx, docker pull<br>
+        › <b>Local dev:</b> Run from source, register manually in client config<br>
+        › <b>Cataloged servers:</b> Filesystem, GitHub, Slack, Postgres, Memory, Time<br>
+        › <b>Quality signals:</b> Stars, downloads, last update, official badge<br>
+        › <b>Private registries:</b> Internal corporate registry for proprietary servers<br>
+        › <b>Lock-in avoidance:</b> Standard schema → swap servers freely
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Registry browsing</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showRegistry()">List popular servers</button>
+      <div id="reg-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">MCP Registry</span>
+      <span class="tag green">npm/uvx</span>
+      <span class="tag amber">Claude Desktop</span>
+      <span class="tag purple">Smithery</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Publish & consume:</b> Publish your MCP server to a registry. Install 3 community servers. Use them via Claude Desktop.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 41: MCP Security -->
+<div class="topic" id="t41">
+  <span class="topic-section-label">D5 — MCP + A2A Protocols</span>
+  <div class="topic-header">
+    <h2>MCP Security Considerations</h2>
+    <p>MCP servers expose your data and systems to LLMs — that's powerful and dangerous. Tool poisoning, prompt injection, confused deputy, exfiltration. Apply zero-trust by default.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Tool poisoning:</b> Malicious server returns prompt injection<br>
+        ★ <b>Confused deputy:</b> Agent tricked into using its privileges for attacker<br>
+        ★ <b>Data exfiltration:</b> Tool exfiltrates sensitive data via output<br>
+        ★ <b>Authentication:</b> OAuth + scoped tokens<br>
+        ★ <b>Sandboxing:</b> Limit filesystem/network exposure
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Threat model:</b> Servers can lie, network can MITM, users can be tricked<br>
+        › <b>Trust boundaries:</b> Treat each MCP server as untrusted code<br>
+        › <b>Least privilege:</b> Scope tokens to specific resources<br>
+        › <b>Output sanitization:</b> LLM might return crafted content from server<br>
+        › <b>Indirect prompt injection:</b> Hidden instructions inside doc returned by server<br>
+        › <b>Allowlists:</b> Only call certain tools without explicit user approval<br>
+        › <b>Audit logs:</b> Record every tool call + parameters + results<br>
+        › <b>HITL for sensitive ops:</b> Require human approval for write actions
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Threat scenarios</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showMCPThreats()">Show attacks & defenses</button>
+      <div id="mcps-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">OAuth 2.1</span>
+      <span class="tag green">PKCE</span>
+      <span class="tag amber">Audit logs</span>
+      <span class="tag purple">HITL gates</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Threat modeling:</b> Take your MCP server, list 5 attack vectors. Add defenses (auth, sandboxing, allowlist, HITL). Pen-test it.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 42: QLoRA + PEFT Library -->
+<div class="topic" id="t42">
+  <span class="topic-section-label">D6 — Fine-tuning + PEFT</span>
+  <div class="topic-header">
+    <h2>QLoRA + PEFT Library</h2>
+    <p>QLoRA = 4-bit base model quantization + LoRA. Lets you fine-tune a 65B param model on a single 48GB GPU. The PEFT library packages this with one config file.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>NF4 quantization:</b> 4-bit normalized float (better than int4)<br>
+        ★ <b>Double quantization:</b> Quantize the quantization constants too<br>
+        ★ <b>Paged optimizers:</b> Avoid OOM on activation spikes<br>
+        ★ <b>PEFT LoraConfig:</b> rank, alpha, target_modules, dropout
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>QLoRA paper (Dettmers 2023):</b> 65B model on 1×A100 (48GB)<br>
+        › <b>NF4 vs int4:</b> NF4 better preserves outliers in weight distribution<br>
+        › <b>Double-quant:</b> Saves additional ~0.4 bit/param<br>
+        › <b>get_peft_model:</b> Wraps base model with LoRA adapters<br>
+        › <b>target_modules:</b> q_proj, k_proj, v_proj, o_proj for attention layers<br>
+        › <b>Rank tradeoff:</b> r=8 (small), r=16 (balanced), r=64 (high capacity)<br>
+        › <b>alpha:</b> Scaling factor, typical alpha = 2*rank<br>
+        › <b>Merging:</b> peft_model.merge_and_unload() — single deployable file
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>QLoRA config</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showQLoRA()">Show config + memory math</button>
+      <div id="qlora-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">PEFT</span>
+      <span class="tag green">BitsAndBytes</span>
+      <span class="tag amber">Transformers</span>
+      <span class="tag purple">Accelerate</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>QLoRA fine-tune Llama 3 8B:</b> Use NF4 + LoRA. Train on 1k instructions. Compare memory and quality vs FP16 LoRA.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 43: TRL: SFT + DPO -->
+<div class="topic" id="t43">
+  <span class="topic-section-label">D6 — Fine-tuning + PEFT</span>
+  <div class="topic-header">
+    <h2>TRL — SFTTrainer + DPO for Alignment</h2>
+    <p>TRL is HuggingFace's RLHF library. SFTTrainer for supervised instruction fine-tuning, DPO for preference alignment without a reward model. Modern teams skip PPO and go straight to DPO.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>SFT (Supervised Fine-Tuning):</b> Train on (instruction, output) pairs<br>
+        ★ <b>DPO (Direct Preference Optimization):</b> Train on (chosen, rejected) pairs<br>
+        ★ <b>RLHF without reward model:</b> DPO replaces PPO + reward model<br>
+        ★ <b>ORPO / KTO:</b> Newer DPO variants, even simpler
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>SFTTrainer:</b> Wraps Trainer with packing, neftune, formatting helpers<br>
+        › <b>Packing:</b> Concatenate short examples to fill context — 2-3x faster<br>
+        › <b>NEFTune:</b> Add embedding noise during training — small quality boost<br>
+        › <b>DPO loss:</b> -log σ(β · (logπ_θ(y_w|x) - logπ_θ(y_l|x) - reference diff))<br>
+        › <b>Pairs format:</b> {prompt, chosen, rejected}<br>
+        › <b>β parameter:</b> KL penalty strength (typical 0.1-0.5)<br>
+        › <b>Reference model:</b> Frozen SFT model used for KL term<br>
+        › <b>Pipeline:</b> Pretrain → SFT → DPO → deploy
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>SFT vs DPO</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showTRL()">Compare SFT and DPO</button>
+      <div id="trl-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">TRL</span>
+      <span class="tag green">DPO</span>
+      <span class="tag amber">ORPO</span>
+      <span class="tag purple">SFTTrainer</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Two-stage train:</b> SFT on 1k instructions, then DPO on 500 preference pairs. Eval on tone & helpfulness vs SFT-only baseline.
+    </div>
+  </div>
+</div>
+
+<!-- Topic 44: Ollama + vLLM -->
+<div class="topic" id="t44">
+  <span class="topic-section-label">D6 — Fine-tuning + PEFT</span>
+  <div class="topic-header">
+    <h2>Ollama + vLLM — Serving Fine-tuned Models</h2>
+    <p>You fine-tuned a model. Now serve it. Ollama for local desktop & dev (one command). vLLM for production GPU servers (high throughput with PagedAttention). Different tools for different stages.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Key topics (tap to expand)</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        ★ <b>Ollama:</b> Local LLM runner, GGUF format, OpenAI-compatible API<br>
+        ★ <b>vLLM:</b> GPU inference server, PagedAttention, continuous batching<br>
+        ★ <b>GGUF:</b> Quantized format for CPU/Apple Silicon<br>
+        ★ <b>Serving fine-tuned:</b> Merge LoRA → convert → deploy
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>All concepts</h3></div>
+    <div class="card-body">
+      <div class="explanation-detailed">
+        › <b>Ollama setup:</b> brew install ollama; ollama pull llama3<br>
+        › <b>Modelfile:</b> Define system prompt, temperature, custom model<br>
+        › <b>GGUF quantization:</b> Q4_K_M (balanced), Q5_K_M (better), Q8_0 (best)<br>
+        › <b>vLLM features:</b> PagedAttention, continuous batching, prefix caching<br>
+        › <b>Throughput:</b> vLLM 10-30x higher than naive HF generate<br>
+        › <b>OpenAI-compatible:</b> Both expose /v1/chat/completions<br>
+        › <b>LoRA in vLLM:</b> --enable-lora → swap adapters per request<br>
+        › <b>When Ollama:</b> Dev, demos, single user. When vLLM: prod, many users
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Compare Ollama vs vLLM</h3></div>
+    <div class="card-body">
+      <button class="btn" onclick="showServing()">Compare serving stacks</button>
+      <div id="serv-out" class="output" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Tools</h3></div>
+    <div class="card-body">
+      <span class="tag blue">Ollama</span>
+      <span class="tag green">vLLM</span>
+      <span class="tag amber">GGUF / llama.cpp</span>
+      <span class="tag purple">TGI</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Project</h3></div>
+    <div class="card-body">
+      <b>Deploy your fine-tuned model:</b> Merge LoRA → quantize to GGUF → run via Ollama. Then serve same model via vLLM. Benchmark throughput.
+    </div>
+  </div>
+</div>
+
+  </div><!-- /content-area -->
+
+</div><!-- /main-container -->
+
+<script src="examples.js?v=3"></script>
+<script>
+// Completion tracking with section info
+let completedTopics = new Set();
+const totalTopics = 44;
+
+// Section definitions for progress tracking
+const sections = {
+  'D1': { label: 'D1 — Embeddings + Vector Databases', topics: ['t1', 't25', 't2', 't3', 't4', 't5', 't6', 't26', 't7', 't27', 't8'], badge: '.sidebar-section:nth-child(1) .progress-badge' },
+  'D2': { label: 'D2 — RAG Pipelines', topics: ['t28', 't9', 't10', 't29', 't30', 't31', 't32', 't33', 't11'], badge: '.sidebar-section:nth-child(2) .progress-badge' },
+  'D3': { label: 'D3 — Advanced RAG + Evaluation', topics: ['t12', 't13', 't14', 't34', 't35', 't36'], badge: '.sidebar-section:nth-child(3) .progress-badge' },
+  'D4': { label: 'D4 — AI Agents — Architecture', topics: ['t15', 't16', 't17', 't37', 't38'], badge: '.sidebar-section:nth-child(4) .progress-badge' },
+  'D5': { label: 'D5 — MCP + A2A Protocols', topics: ['t18', 't39', 't19', 't20', 't40', 't41'], badge: '.sidebar-section:nth-child(5) .progress-badge' },
+  'D6': { label: 'D6 — Fine-tuning + PEFT', topics: ['t21', 't42', 't43', 't22', 't23', 't44'], badge: '.sidebar-section:nth-child(6) .progress-badge' },
+  'D7': { label: 'D7 — Week 2 Project', topics: ['t24'], badge: '.sidebar-section:nth-child(7) .progress-badge-project' }
+};
+
+// Sidebar toggle functionality
+let sidebarOpen = true;
+
+function toggleSidebar() {
+  const sidebar = document.querySelector('.sidebar');
+  const btn = document.querySelector('.hamburger-btn');
+
+  sidebarOpen = !sidebarOpen;
+
+  if (sidebarOpen) {
+    sidebar.classList.remove('hidden');
+    btn.classList.remove('open');
+  } else {
+    sidebar.classList.add('hidden');
+    btn.classList.add('open');
+  }
+}
+
+// Sidebar management
+function toggleSection(el) {
+  const topics = el.nextElementSibling;
+  const toggle = el.querySelector('.toggle');
+  topics.classList.toggle('collapsed');
+  el.classList.toggle('collapsed');
+}
+
+// Topic switching
+function switchTopic(topicId) {
+  // Remove active from all topics and sidebar items
+  document.querySelectorAll('.topic').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.sidebar-topic').forEach(t => t.classList.remove('active'));
+
+  // Add active to selected
+  document.getElementById(topicId).classList.add('active');
+
+  // Find the sidebar-topic that triggered this, handling nested elements
+  if (event && event.target) {
+    const sidebarTopic = event.target.closest('.sidebar-topic');
+    if (sidebarTopic) {
+      sidebarTopic.classList.add('active');
+    }
+  }
+
+  // Scroll to top
+  document.querySelector('.content-area').scrollTop = 0;
+}
+
+// Update progress display
+function updateProgress() {
+  const percentage = Math.round((completedTopics.size / totalTopics) * 100);
+  const progressBar = document.querySelector('.progress-bar-fill');
+  const progressText = document.querySelector('.progress-text');
+  const completionBtn = document.querySelector('.completion-btn');
+
+  progressBar.style.width = percentage + '%';
+  progressText.textContent = `${completedTopics.size} of ${totalTopics} topics completed (${percentage}%)`;
+
+  if (percentage === 100) {
+    completionBtn.textContent = '✓ All Complete!';
+    completionBtn.classList.remove('incomplete');
+  } else {
+    completionBtn.textContent = '○ ' + completedTopics.size + ' of ' + totalTopics;
+    completionBtn.classList.add('incomplete');
+  }
+
+  // Update section-level badges
+  Object.entries(sections).forEach(([key, section]) => {
+    const completed = section.topics.filter(t => completedTopics.has(t)).length;
+    const total = section.topics.length;
+    const badges = document.querySelectorAll(section.badge);
+    badges.forEach(badge => {
+      if (completed === total && total > 0) {
+        badge.textContent = `${total}/${total} ✓`;
+        badge.style.background = '#052e16';
+        badge.style.borderColor = '#166534';
+        badge.style.color = '#86efac';
+      } else {
+        badge.textContent = `${completed}/${total}`;
+        badge.style.background = '#0c1a3a';
+        badge.style.borderColor = '#1e40af';
+        badge.style.color = '#93c5fd';
+      }
+    });
+  });
+}
+
+// Toggle topic completion
+function toggleCompletion() {
+  const currentTopic = document.querySelector('.topic.active').id;
+
+  if (completedTopics.has(currentTopic)) {
+    completedTopics.delete(currentTopic);
+  } else {
+    completedTopics.add(currentTopic);
+  }
+
+  updateProgress();
+  updateTicks();
+
+  // Visual feedback
+  const btn = document.querySelector('.completion-btn');
+  btn.style.transform = 'scale(1.05)';
+  setTimeout(() => btn.style.transform = 'scale(1)', 150);
+}
+
+// Toggle individual topic completion via tick button
+function toggleTopicCompletion(event, topicId) {
+  event.stopPropagation();
+  event.preventDefault();
+
+  if (completedTopics.has(topicId)) {
+    completedTopics.delete(topicId);
+  } else {
+    completedTopics.add(topicId);
+  }
+
+  updateProgress();
+  updateTicks();
+}
+
+// Update tick button states
+function updateTicks() {
+  document.querySelectorAll('.tick-btn').forEach(btn => {
+    const topicLink = btn.closest('.sidebar-topic');
+    const topicId = topicLink.getAttribute('onclick').match(/'(t\d+)'/)[1];
+
+    if (completedTopics.has(topicId)) {
+      btn.classList.add('checked');
+    } else {
+      btn.classList.remove('checked');
+    }
+  });
+}
+
+// Set first topic as active on load
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('.sidebar-topic').classList.add('active');
+  renderMTEB();
+  filterDBs();
+  updateProgress();
+  updateTicks();
+});
+
+// Mark topic as completed when switching
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('sidebar-topic')) {
+    setTimeout(updateProgress, 100);
+  }
+});
+</script>
+</body>
+</html>
